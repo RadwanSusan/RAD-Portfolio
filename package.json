@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "http://RadwanSusan.github.io/RAD-Portfolio"
+	"homepage": "http://RadwanSusan.github.io/RAD-Portfolio",
 	"scripts": {
 		"start": "vite",
 		"build": "vite build",
