@@ -71,8 +71,6 @@ function Hero() {
 			autoplay: true,
 			animationData: animationData,
 		});
-		console.log(`🚀 ~ file: Hero.jsx:74 ~ React.useEffect ~ anim:`, anim);
-
 		anim.addEventListener('complete', handleAnimationComplete);
 		return () => anim.removeEventListener('complete', handleAnimationComplete);
 	}, []);

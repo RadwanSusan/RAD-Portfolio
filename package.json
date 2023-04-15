@@ -1,14 +1,14 @@
 {
+	"homepage": "http://RadwanSusan.github.io/RAD-Portfolio",
 	"name": "rad-portfolio",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "http://RadwanSusan.github.io/RAD-Portfolio",
 	"scripts": {
 		"start": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"predeploy": "yarn build",
+		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
 	},
 	"dependencies": {
