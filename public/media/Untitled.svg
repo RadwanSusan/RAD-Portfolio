@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1000" height="1000" viewBox="0 0 1000 1000" xml:space="preserve">
+<desc>Created with Fabric.js 3.5.0</desc>
+<defs>
+</defs>
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<g transform="matrix(4.7925 0 0 4.7925 499.9988 499.9987)" id="498576">
+<filter id="SVGID_111" y="-37.3%" height="174.6%" x="-38.870000000000005%" width="177.74%">
+	<feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+	<feOffset dx="10" dy="10" result="oBlur"/>
+	<feFlood flood-color="rgb(0,0,0)" flood-opacity="1"/>
+	<feComposite in2="oBlur" operator="in"/>
+	<feMerge>
+		<feMergeNode/>
+		<feMergeNode in="SourceGraphic"/>
+	</feMerge>
+</filter>
+<path style="stroke: rgb(34,34,34); stroke-width: 5; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; is-custom-font: none; font-file-url: none; fill: rgb(80,80,80); fill-opacity: 0; fill-rule: evenodd; opacity: 1;filter: url(#SVGID_111);" transform=" translate(-203.0135, -196.0538)" d="M 194.716 142.884 C 190.013 145.423 185.924 147.743 185.628 148.039 C 185.333 148.334 196.77 154.402 211.045 161.523 L 237 174.469 L 237 185.581 C 237 191.692 237.275 200.699 237.612 205.596 L 238.224 214.5 L 226.112 219.92 L 214 225.339 L 214 237.229 C 214 243.768 214.338 248.94 214.75 248.722 C 215.162 248.504 224.613 243.899 235.75 238.487 L 256 228.649 L 256 196.334 L 256 164.02 L 246.75 159.368 C 241.662 156.81 229.797 151.015 220.383 146.491 L 203.266 138.266 L 194.716 142.884 M 162 158.453 L 150.5 163.831 L 150.263 196.165 L 150.027 228.5 L 175.624 241 C 189.703 247.875 201.629 253.652 202.127 253.839 C 202.658 254.037 202.922 242.915 202.766 226.967 L 202.5 199.757 L 186.25 192.188 L 170 184.619 L 170 180.31 C 170 177.939 170.237 176 170.526 176 C 170.815 176 178.342 179.428 187.252 183.619 L 203.453 191.237 L 215.917 185.029 L 228.38 178.821 L 202.048 165.91 C 187.566 158.81 175.218 153.017 174.608 153.038 C 173.999 153.059 168.325 155.496 162 158.453 M 170 214.4 L 170 223.966 L 174.967 226.483 C 177.698 227.867 180.173 229 180.467 229 C 180.76 229 180.998 224.613 180.996 219.25 L 180.993 209.5 L 176.28 207.5 C 173.688 206.4 171.214 205.35 170.783 205.167 C 170.353 204.983 170 209.138 170 214.4" stroke-linecap="round"/>
+</g>
+</svg>
