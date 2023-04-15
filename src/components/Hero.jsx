@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Lottie from 'lottie-web';
@@ -57,23 +57,19 @@ const LottieRightHero = styled.div`
 		}
 	}
 `;
-
 function Hero() {
 	const animationRef = useRef(null);
-	function handleAnimationComplete() {
-		animationRef.current.pause();
-	}
-	React.useEffect(() => {
-		const anim = Lottie.loadAnimation({
-			container: animationRef.current,
-			renderer: 'svg',
-			loop: false,
-			autoplay: true,
-			animationData: animationData,
-		});
-		anim.addEventListener('complete', handleAnimationComplete);
-		return () => anim.removeEventListener('complete', handleAnimationComplete);
-	}, []);
+	useEffect(() => {
+		if (animationRef.current) {
+			Lottie.loadAnimation({
+				container: animationRef.current,
+				renderer: 'svg',
+				loop: false,
+				autoplay: true,
+				animationData: animationData,
+			});
+		}
+	}, [animationData]);
 	return (
 		<Section>
 			<Navbar />
