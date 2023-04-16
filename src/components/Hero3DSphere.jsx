@@ -1,11 +1,6 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import {
-	OrbitControls,
-	Sphere,
-	MeshDistortMaterial,
-	Text3D,
-} from '@react-three/drei';
+import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 function Hero3DSphere() {
 	return (
 		<Canvas>
