@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef, lazy } from 'react';
+import React, { Suspense, useState, useEffect, useRef, lazy } from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Lottie from 'lottie-web';
 import './style/hero.css';
-
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import animationData from '../media/141273-web-dev.json';
 
 const Section = styled.div`
@@ -50,13 +51,8 @@ const LottieRightHero = styled.div`
 		}
 	}
 `;
-const ThreeCanvas = lazy(() => import('./Hero3DSphere'));
 
 function Hero() {
-	const [isMounted, setIsMounted] = useState(false);
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
 	const animationRef = useRef(null);
 	useEffect(() => {
 		setTimeout(() => {
@@ -93,14 +89,34 @@ function Hero() {
 					</div>
 				</LeftContainer>
 				<RightContainer>
-					{!isMounted ||
-					navigator.userAgent.match(/Android/i) ||
-					navigator.userAgent.match(/webOS/i) ||
-					navigator.userAgent.match(/iPhone/i) ||
-					navigator.userAgent.match(/iPad/i) ||
-					navigator.userAgent.match(/iPod/i) ? null : (
-						<ThreeCanvas />
-					)}
+					<Canvas>
+						<Suspense fallback={null}>
+							<OrbitControls
+								enableZoom={false}
+								autoRotate={true}
+								autoRotateSpeed={3}
+								rotation={[0, 0, 0]}
+							/>
+							<ambientLight
+								intensity={0.7}
+								color='hsl(0, 0%, 100%)'
+								position={[10, 10, 10]}
+							/>
+							<directionalLight position={[3, 2, 1]} />
+							<directionalLight position={[-3, 2, 1]} />
+							<Sphere
+								args={[0.9, 100, 200]}
+								scale={2.3}
+							>
+								<MeshDistortMaterial
+									color='hsl(229, 19%, 12%)'
+									attach='material'
+									distort={0.35}
+									speed={0.5}
+								/>
+							</Sphere>
+						</Suspense>
+					</Canvas>
 					<LottieRightHero
 						className='lottie'
 						ref={animationRef}
