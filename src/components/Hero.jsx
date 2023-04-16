@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy } from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Lottie from 'lottie-web';
@@ -37,11 +37,11 @@ const RightContainer = styled.div`
 `;
 const LottieRightHero = styled.div`
 	width: 600px;
-	height: 600px;
+	height: 500px;
 	object-fit: contain;
 	position: absolute;
-	top: 170px;
-	right: 0px;
+	top: 250px;
+	right: 100px;
 	margin: auto;
 	animation: animate 2s infinite ease-in-out alternate;
 	@keyframes animate {
@@ -50,7 +50,13 @@ const LottieRightHero = styled.div`
 		}
 	}
 `;
+const ThreeCanvas = lazy(() => import('./Hero3DSphere'));
+
 function Hero() {
+	const [isMounted, setIsMounted] = useState(false);
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 	const animationRef = useRef(null);
 	useEffect(() => {
 		setTimeout(() => {
@@ -70,8 +76,8 @@ function Hero() {
 			<Navbar />
 			<Container>
 				<LeftContainer>
-					<div class='animated-title'>
-						<div class='text-top'>
+					<div className='animated-title'>
+						<div className='text-top'>
 							<div>
 								<span>Hi,</span>
 								<span>I'm Radwan</span>
@@ -87,10 +93,14 @@ function Hero() {
 					</div>
 				</LeftContainer>
 				<RightContainer>
-					{/* <Img
-						src='../../media/moon.png'
-						alt='hero'
-					/> */}
+					{!isMounted ||
+					navigator.userAgent.match(/Android/i) ||
+					navigator.userAgent.match(/webOS/i) ||
+					navigator.userAgent.match(/iPhone/i) ||
+					navigator.userAgent.match(/iPad/i) ||
+					navigator.userAgent.match(/iPod/i) ? null : (
+						<ThreeCanvas />
+					)}
 					<LottieRightHero
 						className='lottie'
 						ref={animationRef}
