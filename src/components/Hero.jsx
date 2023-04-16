@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Lottie from 'lottie-web';
+import './style/hero.css';
 
 import animationData from '../../src/media/141273-web-dev.json';
 
@@ -20,27 +21,19 @@ const Container = styled.div`
 	justify-content: space-between;
 `;
 const LeftContainer = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	gap: 20px;
 	flex: 2;
 	margin-left: 40px;
+	margin-top: 150px;
 `;
 const RightContainer = styled.div`
 	position: relative;
 	flex: 3;
 	z-index: 1;
-`;
-const Title = styled.h1`
-	font-family: 'Major Mono Display', monospace;
-	font-size: 65px;
-	color: #000;
-	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-const Description = styled.p`
-	font-size: 22px;
-	color: black;
 `;
 const LottieRightHero = styled.div`
 	width: 600px;
@@ -60,32 +53,38 @@ const LottieRightHero = styled.div`
 function Hero() {
 	const animationRef = useRef(null);
 	useEffect(() => {
-		if (animationRef.current) {
-			Lottie.loadAnimation({
-				container: animationRef.current,
-				renderer: 'svg',
-				loop: false,
-				autoplay: true,
-				animationData: animationData,
-			});
-		}
+		setTimeout(() => {
+			if (animationRef.current) {
+				Lottie.loadAnimation({
+					container: animationRef.current,
+					renderer: 'svg',
+					loop: false,
+					autoplay: true,
+					animationData: animationData,
+				});
+			}
+		}, 2500);
 	}, [animationData]);
 	return (
 		<Section>
 			<Navbar />
 			<Container>
 				<LeftContainer>
-					<Title>
-						Hi,
-						<br />
-						I'm Radwan
-						<br />A Full Stack Web Developer
-					</Title>
-					<Description>
-						A Full Stack Web Developer with a passion for
-						<br />
-						creating beautiful and modern websites.
-					</Description>
+					<div class='animated-title'>
+						<div class='text-top'>
+							<div>
+								<span>Hi,</span>
+								<span>I'm Radwan</span>
+								<span>A Full Stack Web Developer</span>
+							</div>
+						</div>
+						<div className='text-bottom'>
+							<div className='botomDesc'>
+								A Full Stack Web Developer with a passion for creating beautiful and
+								modern websites.
+							</div>
+						</div>
+					</div>
 				</LeftContainer>
 				<RightContainer>
 					{/* <Img

@@ -14,7 +14,7 @@ const Container = styled.div`
 		display: none;
 	}
 	color: black;
-	background: linear-gradient(to right, #c2c2c2, #1e1f26);
+	background: linear-gradient(to right, hsl(173, 33%, 95%), hsl(211, 29%, 74%));
 `;
 function App() {
 	return (

@@ -36,7 +36,7 @@ const SearchIcon = styled(RiSearch2Line)`
 	padding: 7px;
 	background-color: rgba(255, 255, 255, 0.3);
 	border-radius: 50%;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
 	:hover {
 		filter: invert(100%);
 	}
@@ -48,7 +48,7 @@ const MoonIcon = styled(BiMoon)`
 	background-color: rgba(255, 255, 255, 0.3);
 	padding: 7px;
 	border-radius: 50%;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
 	:hover {
 		filter: invert(100%);
 	}
@@ -60,7 +60,7 @@ const SunIcon = styled(BiSun)`
 	background-color: rgba(255, 255, 255, 0.3);
 	padding: 7px;
 	border-radius: 50%;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
 	:hover {
 		filter: invert(100%);
 	}
@@ -81,13 +81,14 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-	font-family: 'Ubuntu', sans-serif;
 	font-size: 19px;
 	cursor: pointer;
-	font-weight: bold;
 	transition: all 0.15s ease-in-out;
 	:hover {
-		text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		text-decoration: underline;
+		text-underline-offset: 5px;
+		text-decoration-thickness: 2px;
+		text-decoration-color: #222;
 	}
 `;
 
