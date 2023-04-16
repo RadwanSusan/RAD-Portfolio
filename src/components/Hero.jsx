@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import Lottie from 'lottie-web';
 
-import animationData from '../../public/media/141273-web-dev.json';
+import animationData from '../../src/media/141273-web-dev.json';
 
 const Section = styled.div`
 	height: 100vh;
@@ -43,7 +43,7 @@ const Description = styled.p`
 	color: black;
 `;
 const LottieRightHero = styled.div`
-	width: 800px;
+	width: 600px;
 	height: 600px;
 	object-fit: contain;
 	position: absolute;
