@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import Lottie from 'lottie-web';
 import './style/hero.css';
 
-import animationData from '../../src/media/141273-web-dev.json';
+import animationData from '../media/141273-web-dev.json';
 
 const Section = styled.div`
 	height: 100vh;
