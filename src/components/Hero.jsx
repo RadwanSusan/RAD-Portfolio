@@ -42,7 +42,7 @@ const LottieRightHero = styled.div`
 	object-fit: contain;
 	position: absolute;
 	top: 250px;
-	right: 100px;
+	right: 110px;
 	margin: auto;
 	animation: animate 2s infinite ease-in-out alternate;
 	@keyframes animate {

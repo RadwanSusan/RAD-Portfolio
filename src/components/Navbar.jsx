@@ -74,24 +74,33 @@ const Logo = styled.img`
 	}
 `;
 
+const ListItem = styled.li`
+	font-size: 19px;
+	cursor: pointer;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 4.7px;
+	transition: text-underline-offset 0.1s ease-in-out;
+	:hover {
+		text-decoration: underline;
+		text-underline-offset: 7px;
+		text-decoration-thickness: 1.5px;
+	}
+`;
+
 const List = styled.ul`
 	display: flex;
 	gap: 25px;
 	list-style: none;
-`;
+	transition: all 1.5s ease-in-out;
 
-const ListItem = styled.li`
-	font-size: 19px;
-	cursor: pointer;
-	transition: all 0.15s ease-in-out;
-	:hover {
-		text-decoration: underline;
-		text-underline-offset: 5px;
-		text-decoration-thickness: 2px;
-		text-decoration-color: #222;
+	:hover ${ListItem} {
+		color: hsl(0, 1%, 48%);
+	}
+
+	:hover ${ListItem}:hover {
+		color: #000;
 	}
 `;
-
 const Button = styled.button`
 	font-family: 'Ubuntu', sans-serif;
 	font-size: 15px;
@@ -127,7 +136,7 @@ function Navbar() {
 					<SearchIcon />
 					<MoonIcon />
 					<SunIcon />
-					<Button>Hire Now</Button>
+					<Button>Contact</Button>
 				</Icons>
 			</Container>
 		</Section>
