@@ -1,7 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 import { RiSearch2Line } from 'react-icons/ri';
 import { BiMoon, BiSun } from 'react-icons/bi';
+
+// const GlobalStyle = createGlobalStyle`
+//   body {
+//     background-color: ${(props) => props.theme.backgroundColor};
+//     color: ${(props) => props.theme.textColor};
+//   }
+// `;
+
 const Section = styled.div`
 	position: fixed;
 	display: flex;
@@ -119,7 +127,23 @@ const Button = styled.button`
 	}
 `;
 
+// const lightTheme = {
+// 	backgroundColor: '#ffffff',
+// 	textColor: '#000000',
+// };
+
+// const darkTheme = {
+// 	backgroundColor: '#222222',
+// 	textColor: '#ffffff',
+// };
+
 function Navbar() {
+	// const [darkMode, setDarkMode] = useState(false);
+
+	// const handleClick = () => {
+	// 	setDarkMode(!darkMode);
+	// };
+
 	return (
 		<Section>
 			<Container>
@@ -144,3 +168,20 @@ function Navbar() {
 }
 
 export default Navbar;
+
+// const AppWrapper = styled.div`
+// 	background-color: ${(props) => props.theme.backgroundColor};
+// 	color: ${(props) => props.theme.textColor};
+// `;
+
+// <AppWrapper theme={darkMode ? darkTheme : lightTheme}>
+// 	<GlobalStyle theme={darkMode ? darkTheme : lightTheme} />
+// 	<Button
+// 		onClick={handleClick}
+// 		theme={darkMode ? lightTheme : darkTheme}
+// 	>
+// 		{darkMode ? 'Light Mode' : 'Dark Mode'}
+// 	</Button>
+// 	<h1>This is a heading</h1>
+// 	<p>This is some text</p>
+// </AppWrapper>
