@@ -26,13 +26,13 @@ const RightContainer = styled.div`
 	flex: 1;
 `;
 const Title = styled.h1`
-	font-family: 'action_man', sans-serif;
+	font-family: 'Nunito', sans-serif;
 	font-size: 40px;
 	font-weight: bold;
 	color: black;
 `;
 const Description = styled.p`
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Supreme', sans-serif;
 	font-size: 20px;
 	font-weight: bold;
 	color: black;

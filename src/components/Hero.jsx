@@ -1,10 +1,9 @@
-import React, { Suspense, useState, useEffect, useRef, lazy } from 'react';
-import styled from 'styled-components';
-import Navbar from './Navbar';
+import React, { Suspense, useEffect, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
 import Lottie from 'lottie-web';
-import './style/hero.css';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import Navbar from './Navbar';
 import animationData from '../media/141273-web-dev.json';
 
 const Section = styled.div`
@@ -52,6 +51,87 @@ const LottieRightHero = styled.div`
 	}
 `;
 
+const showTopText = keyframes`
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(0, 50%, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+`;
+
+const showBottomText = keyframes`
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+`;
+
+const AnimatedTitle = styled.div`
+	color: #000;
+	font-family: 'Nunito', sans-serif;
+	height: 30vmin;
+	width: 1vmin;
+
+	> div {
+		height: 50%;
+		overflow: hidden;
+		position: absolute;
+		width: 100%;
+	}
+
+	> div > div {
+		font-size: 5.5vmin;
+		padding: 2vmin 0;
+		position: absolute;
+	}
+
+	> div > div span {
+		display: block;
+		font-family: 'Nunito', sans-serif;
+		font-weight: bolder;
+		text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	}
+
+	> div.text-top {
+		border-bottom: 0.7vmin solid #222;
+		top: 0;
+
+		> div {
+			animation: ${showTopText} 1s;
+			animation-delay: 0.5s;
+			animation-fill-mode: forwards;
+			bottom: 0;
+			transform: translate(0, 100%);
+		}
+	}
+
+	> div.text-bottom {
+		bottom: 0;
+
+		> div {
+			animation: ${showBottomText} 0.5s;
+			animation-delay: 1.75s;
+			animation-fill-mode: forwards;
+			top: 0;
+			transform: translate(0, -100%);
+		}
+	}
+`;
+
+const BottomDesc = styled.div`
+	font-size: 2.3vmin !important;
+`;
+
 function Hero() {
 	const animationRef = useRef(null);
 	useEffect(() => {
@@ -62,7 +142,7 @@ function Hero() {
 					renderer: 'svg',
 					loop: false,
 					autoplay: true,
-					animationData: animationData,
+					animationData,
 				});
 			}
 		}, 2500);
@@ -72,7 +152,7 @@ function Hero() {
 			<Navbar />
 			<Container>
 				<LeftContainer>
-					<div className='animated-title'>
+					<AnimatedTitle>
 						<div className='text-top'>
 							<div>
 								<span>Hi,</span>
@@ -81,12 +161,12 @@ function Hero() {
 							</div>
 						</div>
 						<div className='text-bottom'>
-							<div className='botomDesc'>
-								A Full Stack Web Developer with a passion for creating beautiful and
-								modern websites.
-							</div>
+							<BottomDesc>
+								A Full Stack Web Developer with a passion for creating beautiful
+								and modern websites.
+							</BottomDesc>
 						</div>
-					</div>
+					</AnimatedTitle>
 				</LeftContainer>
 				<RightContainer>
 					<Canvas>
@@ -94,6 +174,7 @@ function Hero() {
 							<OrbitControls
 								enableZoom={false}
 								autoRotate={true}
+								enableRotate={false}
 								autoRotateSpeed={3}
 								rotation={[0, 0, 0]}
 							/>
