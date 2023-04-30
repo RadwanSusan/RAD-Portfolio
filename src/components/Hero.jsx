@@ -5,6 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import Navbar from './Navbar';
 import animationData from '../media/141273-web-dev.json';
+import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
 
 const Section = styled.div`
 	height: 100vh;
@@ -14,12 +15,14 @@ const Section = styled.div`
 	justify-content: space-between;
 	align-items: center;
 `;
+
 const Container = styled.div`
 	height: 100vh;
 	width: 1400px;
 	display: flex;
 	justify-content: space-between;
 `;
+
 const LeftContainer = styled.div`
 	position: relative;
 	display: flex;
@@ -30,11 +33,13 @@ const LeftContainer = styled.div`
 	margin-left: 40px;
 	margin-top: 150px;
 `;
+
 const RightContainer = styled.div`
 	position: relative;
 	flex: 3;
 	z-index: 1;
 `;
+
 const LottieRightHero = styled.div`
 	width: 600px;
 	height: 500px;
@@ -103,7 +108,6 @@ const AnimatedTitle = styled.div`
 	}
 
 	> div.text-top {
-		border-bottom: 0.7vmin solid #222;
 		top: 0;
 
 		> div {
@@ -133,7 +137,16 @@ const BottomDesc = styled.div`
 `;
 
 function Hero() {
+	const { isDark } = useDarkMode();
 	const animationRef = useRef(null);
+
+	useEffect(() => {
+		const textTopBorder = document.querySelector('div.text-top');
+		isDark
+			? (textTopBorder.style.borderBottom = darkTheme.colors.textTopBorder)
+			: (textTopBorder.style.borderBottom = lightTheme.colors.textTopBorder);
+	}, [isDark]);
+
 	useEffect(() => {
 		setTimeout(() => {
 			if (animationRef.current) {
@@ -147,29 +160,44 @@ function Hero() {
 			}
 		}, 2500);
 	}, [animationData]);
+
 	return (
 		<Section>
 			<Navbar />
 			<Container>
 				<LeftContainer>
 					<AnimatedTitle>
-						<div className='text-top'>
+						<div
+							className='text-top'
+							style={{
+								color: isDark
+									? darkTheme.colors.TitleAndDesc
+									: lightTheme.colors.TitleAndDesc,
+							}}
+						>
 							<div>
 								<span>Hi,</span>
 								<span>I'm Radwan</span>
 								<span>A Full Stack Web Developer</span>
 							</div>
 						</div>
-						<div className='text-bottom'>
+						<div
+							className='text-bottom'
+							style={{
+								color: isDark
+									? darkTheme.colors.TitleAndDesc
+									: lightTheme.colors.TitleAndDesc,
+							}}
+						>
 							<BottomDesc>
-								A Full Stack Web Developer with a passion for creating beautiful
-								and modern websites.
+								A Full Stack Web Developer with a passion for creating
+								beautiful and modern websites.
 							</BottomDesc>
 						</div>
 					</AnimatedTitle>
 				</LeftContainer>
 				<RightContainer>
-					<Canvas>
+					<Canvas style={{ background: 'transparent' }}>
 						<Suspense fallback={null}>
 							<OrbitControls
 								enableZoom={false}
@@ -181,6 +209,12 @@ function Hero() {
 							<ambientLight
 								intensity={0.7}
 								color='hsl(0, 0%, 100%)'
+								color={
+									isDark
+										? darkTheme.threeJS.three_Model_Hero_Ambient_Color
+										: lightTheme.threeJS
+												.three_Model_Hero_Ambient_Color
+								}
 								position={[10, 10, 10]}
 							/>
 							<directionalLight position={[3, 2, 1]} />
@@ -190,7 +224,11 @@ function Hero() {
 								scale={2.3}
 							>
 								<MeshDistortMaterial
-									color='hsl(229, 19%, 12%)'
+									color={
+										isDark
+											? darkTheme.threeJS.three_Model_Hero_Color
+											: lightTheme.threeJS.three_Model_Hero_Color
+									}
 									attach='material'
 									distort={0.35}
 									speed={0.5}

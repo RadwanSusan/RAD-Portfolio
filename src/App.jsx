@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Hero from './components/Hero';
 import Who from './components/Who';
 import Works from './components/Works';
 import Contact from './components/Contact';
-import { lightTheme, darkTheme, ThemeContext } from './components/theme';
+import { lightTheme, darkTheme, useDarkMode } from './contexts/theme-context';
 
 const Container = styled.div`
 	height: 100vh;
@@ -16,46 +16,26 @@ const Container = styled.div`
 		display: none;
 	}
 	color: black;
+	background: ${(props) => props.background};
 `;
 
 function App() {
-	const [theme, setTheme] = useState('light');
-
-	const themeObject = useMemo(
-		() => (theme === 'light' ? lightTheme : darkTheme),
-		[theme],
-	);
-
-	useEffect(() => {
-		const prefersDarkMode = window.matchMedia(
-			'(prefers-color-scheme: dark)',
-		).matches;
-		const storedTheme = localStorage.getItem('theme');
-		const themeToApply = storedTheme
-			? storedTheme
-			: prefersDarkMode
-			? 'dark'
-			: 'light';
-		setTheme(themeToApply);
-	}, []);
+	const { isDark } = useDarkMode();
 
 	return (
-		<ThemeContext.Provider value={themeObject}>
-			<Container
-				className='App_Container'
-				style={{
-					background:
-						theme === 'dark'
-							? darkTheme.colors.background_Main
-							: lightTheme.colors.background_Main,
-				}}
-			>
-				<Hero />
-				<Who />
-				<Works />
-				<Contact />
-			</Container>
-		</ThemeContext.Provider>
+		<Container
+			className='App_Container'
+			background={
+				isDark
+					? darkTheme.colors.background_Main
+					: lightTheme.colors.background_Main
+			}
+		>
+			<Hero />
+			<Who />
+			<Works />
+			<Contact />
+		</Container>
 	);
 }
 

@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/media/DocumentLogo.png"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<meta
+			name="description"
+			content="A Personal Portfolio [RS]"
+		/>
+		<title>RAD Portfolio</title>
+		<link
+			href="https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=nunito@800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				font-family: 'Supreme', sans-serif;
+				box-sizing: border-box;
+			}
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RAD Portfolio</title>
-  <link href="https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=nunito@800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      font-family: 'Supreme', sans-serif;
-      box-sizing: border-box;
-    }
+			::selection {
+				background-color: rgba(0, 0, 0, 0.2);
+				color: black;
+			}
+		</style>
+	</head>
 
-    ::selection {
-      background-color: rgba(0, 0, 0, 0.2);
-      color: black;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-
+	<body>
+		<div id="root"></div>
+		<script
+			type="module"
+			src="/src/main.jsx"
+		></script>
+	</body>
 </html>
