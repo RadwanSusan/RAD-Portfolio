@@ -3,11 +3,21 @@ import React, {
 	useCallback,
 	useEffect,
 	useMemo,
-	useRef,
+	Suspense,
 } from 'react';
 import styled from 'styled-components';
-import { RiSearch2Line } from 'react-icons/ri';
-import { BiMoon, BiSun } from 'react-icons/bi';
+const RiSearch2Line = React.lazy(() =>
+	import('react-icons/ri').then((module) => ({
+		default: module.RiSearch2Line,
+	})),
+);
+const BiMoon = React.lazy(() =>
+	import('react-icons/bi').then((module) => ({ default: module.BiMoon })),
+);
+const BiSun = React.lazy(() =>
+	import('react-icons/bi').then((module) => ({ default: module.BiSun })),
+);
+
 import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
 
 const Section = styled.div`
@@ -19,11 +29,8 @@ const Section = styled.div`
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	user-select: none;
-	// ! ||--------------------------------------------------------------------------------||
-	// ! ||                           Make the box-shadow dynamic
-	// ! ||--------------------------------------------------------------------------------||
-	${'' /* box-shadow: ${(props) => props.$SectionBoxShadow}; */}
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	box-shadow: ${(props) => props.$SectionBoxShadow};
+	background-color: ${(props) => props.$SectionBoxBackgroundColor};
 `;
 
 const Container = styled.div`
@@ -148,12 +155,14 @@ const List = styled.ul`
 	}
 `;
 
-function Navbar() {
-	const [hoveredIndex, setHoveredIndex] = useState(null);
-	const logoRef = useRef(null);
+const Navbar = () => {
 	const { isDark, toggleDarkMode } = useDarkMode();
+	const [hoveredIndex, setHoveredIndex] = useState(null);
+	const [logoSrc, setLogoSrc] = useState(
+		isDark ? '../../media/lightLogoSVG.png' : '../../media/Untitled4.png',
+	);
 
-	const items = useMemo(
+	const menuItems = useMemo(
 		() => [
 			{ id: 1, name: 'My Skills' },
 			{ id: 2, name: 'About' },
@@ -168,37 +177,43 @@ function Navbar() {
 	}, []);
 
 	useEffect(() => {
-		if (isDark) {
-			logoRef.current.src = '../../media/lightLogoSVG.png';
-		} else {
-			logoRef.current.src = '../../media/Untitled4.png';
-		}
+		setLogoSrc(
+			isDark ? '../../media/lightLogoSVG.png' : '../../media/Untitled4.png',
+		);
 	}, [isDark]);
 
 	const handleMouseEnter = useCallback(
-		(index) => {
-			handleListItemHover(index);
-		},
+		(index) => handleListItemHover(index),
 		[handleListItemHover],
 	);
 
-	const handleMouseLeave = useCallback(() => {
-		handleListItemHover(null);
-	}, [handleListItemHover]);
+	const handleMouseLeave = useCallback(
+		() => handleListItemHover(null),
+		[handleListItemHover],
+	);
 
 	return (
 		<Section
 			$SectionBoxShadow={
-				isDark ? darkTheme.SectionBoxShadow : lightTheme.SectionBoxShadow
+				isDark
+					? darkTheme.colors.SectionBoxShadow
+					: lightTheme.colors.SectionBoxShadow
+			}
+			$SectionBoxBackgroundColor={
+				isDark
+					? darkTheme.colors.SectionBoxBackgroundColor
+					: lightTheme.colors.SectionBoxBackgroundColor
 			}
 		>
 			<Container
-				navBar_Container={
-					isDark ? darkTheme.navBar_Container : lightTheme.navBar_Container
+				$navBarContainer={
+					isDark
+						? darkTheme.colors.navBar_Container
+						: lightTheme.colors.navBar_Container
 				}
 			>
 				<Links>
-					<Logo ref={logoRef} />
+					<Logo src={logoSrc} />
 					<List
 						$linksColor={
 							isDark
@@ -206,7 +221,7 @@ function Navbar() {
 								: lightTheme.colors.linksColor
 						}
 					>
-						{items.map((item, index) => {
+						{menuItems.map((item, index) => {
 							const isHovered =
 								hoveredIndex !== null && index !== hoveredIndex;
 							return (
@@ -228,97 +243,101 @@ function Navbar() {
 					</List>
 				</Links>
 				<Icons>
-					<SearchIcon
-						$iconColorsHover={
-							isDark
-								? darkTheme.colors.iconColorsHover
-								: lightTheme.colors.iconColorsHover
-						}
-						$iconFillColorHover={
-							isDark
-								? darkTheme.colors.iconFillColorHover
-								: lightTheme.colors.iconFillColorHover
-						}
-						$iconFillColor={
-							isDark
-								? darkTheme.colors.iconFillColor
-								: lightTheme.colors.iconFillColor
-						}
-						$iconColors={
-							isDark
-								? darkTheme.colors.iconColors
-								: lightTheme.colors.iconColors
-						}
-						$iconBoxShadow={
-							isDark
-								? darkTheme.colors.iconBoxShadow
-								: lightTheme.colors.iconBoxShadow
-						}
-					/>
-					<MoonIcon
-						className='moonDarkButton'
-						onClick={toggleDarkMode}
-						style={{
-							display: isDark ? 'none' : 'block',
-						}}
-						$iconColorsHover={
-							isDark
-								? darkTheme.colors.iconColorsHover
-								: lightTheme.colors.iconColorsHover
-						}
-						$iconFillColorHover={
-							isDark
-								? darkTheme.colors.iconFillColorHover
-								: lightTheme.colors.iconFillColorHover
-						}
-						$iconFillColor={
-							isDark
-								? darkTheme.colors.iconFillColor
-								: lightTheme.colors.iconFillColor
-						}
-						$iconColors={
-							isDark
-								? darkTheme.colors.iconColors
-								: lightTheme.colors.iconColors
-						}
-						$iconBoxShadow={
-							isDark
-								? darkTheme.colors.iconBoxShadow
-								: lightTheme.colors.iconBoxShadow
-						}
-					/>
-					<SunIcon
-						className='sunLightButton'
-						onClick={toggleDarkMode}
-						style={{
-							display: isDark ? 'block' : 'none',
-						}}
-						$iconColorsHover={
-							isDark
-								? darkTheme.colors.iconColorsHover
-								: lightTheme.colors.iconColorsHover
-						}
-						$iconFillColorHover={
-							isDark
-								? darkTheme.colors.iconFillColorHover
-								: lightTheme.colors.iconFillColorHover
-						}
-						$iconFillColor={
-							isDark
-								? darkTheme.colors.iconFillColor
-								: lightTheme.colors.iconFillColor
-						}
-						$iconColors={
-							isDark
-								? darkTheme.colors.iconColors
-								: lightTheme.colors.iconColors
-						}
-						$iconBoxShadow={
-							isDark
-								? darkTheme.colors.iconBoxShadow
-								: lightTheme.colors.iconBoxShadow
-						}
-					/>
+					<Suspense fallback={null}>
+						<SearchIcon
+							$iconColors={
+								isDark
+									? darkTheme.colors.iconColors
+									: lightTheme.colors.iconColors
+							}
+							$iconColorsHover={
+								isDark
+									? darkTheme.colors.iconColorsHover
+									: lightTheme.colors.iconColorsHover
+							}
+							$iconBoxShadow={
+								isDark
+									? darkTheme.colors.iconBoxShadow
+									: lightTheme.colors.iconBoxShadow
+							}
+							$iconFillColor={
+								isDark
+									? darkTheme.colors.iconFillColor
+									: lightTheme.colors.iconFillColor
+							}
+							$iconFillColorHover={
+								isDark
+									? darkTheme.colors.iconFillColorHover
+									: lightTheme.colors.iconFillColorHover
+							}
+						/>
+					</Suspense>
+					<Suspense fallback={null}>
+						<MoonIcon
+							className='moonDarkButton'
+							onClick={toggleDarkMode}
+							style={{ display: isDark ? 'none' : 'block' }}
+							$iconColors={
+								isDark
+									? darkTheme.colors.iconColors
+									: lightTheme.colors.iconColors
+							}
+							$iconColorsHover={
+								isDark
+									? darkTheme.colors.iconColorsHover
+									: lightTheme.colors.iconColorsHover
+							}
+							$iconBoxShadow={
+								isDark
+									? darkTheme.colors.iconBoxShadow
+									: lightTheme.colors.iconBoxShadow
+							}
+							$iconFillColor={
+								isDark
+									? darkTheme.colors.iconFillColor
+									: lightTheme.colors.iconFillColor
+							}
+							$iconFillColorHover={
+								isDark
+									? darkTheme.colors.iconFillColorHover
+									: lightTheme.colors.iconFillColorHover
+							}
+						/>
+					</Suspense>
+					<Suspense fallback={null}>
+						<SunIcon
+							className='sunLightButton'
+							onClick={toggleDarkMode}
+							style={{ display: isDark ? 'block' : 'none' }}
+							$iconColors={
+								isDark
+									? darkTheme.colors.iconColors
+									: lightTheme.colors.iconColors
+							}
+							$iconColorsHover={
+								isDark
+									? darkTheme.colors.iconColorsHover
+									: lightTheme.colors.iconColorsHover
+							}
+							$
+							$iconBoxShadow={
+								isDark
+									? darkTheme.colors.iconBoxShadow
+									: lightTheme.colors.iconBoxShadow
+							}
+							$iconFillColor={
+								isDark
+									? darkTheme.colors.iconFillColor
+									: lightTheme.colors.iconFillColor
+							}
+							$iconFillColorHover={
+								isDark
+									? darkTheme.colors.iconFillColorHover
+									: lightTheme.colors.iconFillColorHover
+							}
+						/>
+					</Suspense>
+
 					<Button
 						$backgroundColor={
 							isDark
@@ -357,6 +376,6 @@ function Navbar() {
 			</Container>
 		</Section>
 	);
-}
+};
 
 export default Navbar;

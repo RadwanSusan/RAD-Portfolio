@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
-import Hero from './components/Hero';
-import Who from './components/Who';
-import Works from './components/Works';
-import Contact from './components/Contact';
 import { lightTheme, darkTheme, useDarkMode } from './contexts/theme-context';
+
+const HomePage = lazy(() => import('./components/HomePage'));
+const Who = lazy(() => import('./components/Who'));
+const Works = lazy(() => import('./components/Works'));
+const Contact = lazy(() => import('./components/Contact'));
 
 const Container = styled.div`
 	height: 100vh;
@@ -12,11 +13,11 @@ const Container = styled.div`
 	scroll-behavior: smooth;
 	overflow-y: auto;
 	scrollbar-width: none;
+	background: ${(props) => (props.background ? props.background : 'white')};
+	color: black;
 	&::-webkit-scrollbar {
 		display: none;
 	}
-	color: black;
-	background: ${(props) => props.background};
 `;
 
 function App() {
@@ -31,10 +32,12 @@ function App() {
 					: lightTheme.colors.background_Main
 			}
 		>
-			<Hero />
-			<Who />
-			<Works />
-			<Contact />
+			<Suspense fallback={null}>
+				<HomePage />
+				<Who />
+				<Works />
+				<Contact />
+			</Suspense>
 		</Container>
 	);
 }

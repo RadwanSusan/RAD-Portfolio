@@ -47,6 +47,7 @@ export const lightTheme = {
 		TitleAndDesc: '#000',
 		textTopBorder: '0.7vmin solid black',
 		SectionBoxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+		SectionBoxBackgroundColor: 'rgba(255, 255, 255, 0.25)',
 	},
 	threeJS: {
 		three_Model_Hero_Color: 'hsl(229, 19%, 12%)',
@@ -72,7 +73,8 @@ export const darkTheme = {
 		NavbarButtonBorderHover: '1px solid white;',
 		TitleAndDesc: '#fff',
 		textTopBorder: '0.7vmin solid white',
-		SectionBoxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
+		SectionBoxShadow: '0px 4px 4px rgba(0, 0, 0, 0.45)',
+		SectionBoxBackgroundColor: 'rgba(0, 0, 0, 0.15)',
 	},
 	threeJS: {
 		three_Model_Hero_Color: 'hsl(261, 100%, 16%)',

@@ -1,10 +1,8 @@
-import React, { Suspense, useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, lazy } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Lottie from 'lottie-web';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
-import Navbar from './Navbar';
-import animationData from '../media/141273-web-dev.json';
+const Navbar = lazy(() => import('./Navbar'));
+const LottieRightHero = lazy(() => import('./LottieRightHero'));
+const HeroRightBlob = lazy(() => import('./HeroRightBlob'));
 import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
 
 const Section = styled.div`
@@ -38,22 +36,6 @@ const RightContainer = styled.div`
 	position: relative;
 	flex: 3;
 	z-index: 1;
-`;
-
-const LottieRightHero = styled.div`
-	width: 600px;
-	height: 500px;
-	object-fit: contain;
-	position: absolute;
-	top: 250px;
-	right: 110px;
-	margin: auto;
-	animation: animate 2s infinite ease-in-out alternate;
-	@keyframes animate {
-		100% {
-			transform: translateY(-20px);
-		}
-	}
 `;
 
 const showTopText = keyframes`
@@ -135,35 +117,21 @@ const AnimatedTitle = styled.div`
 const BottomDesc = styled.div`
 	font-size: 2.3vmin !important;
 `;
-
-function Hero() {
+const HomePage = () => {
 	const { isDark } = useDarkMode();
-	const animationRef = useRef(null);
 
 	useEffect(() => {
 		const textTopBorder = document.querySelector('div.text-top');
-		isDark
-			? (textTopBorder.style.borderBottom = darkTheme.colors.textTopBorder)
-			: (textTopBorder.style.borderBottom = lightTheme.colors.textTopBorder);
+		textTopBorder.style.borderBottom = isDark
+			? darkTheme.colors.textTopBorder
+			: lightTheme.colors.textTopBorder;
 	}, [isDark]);
-
-	useEffect(() => {
-		setTimeout(() => {
-			if (animationRef.current) {
-				Lottie.loadAnimation({
-					container: animationRef.current,
-					renderer: 'svg',
-					loop: false,
-					autoplay: true,
-					animationData,
-				});
-			}
-		}, 2500);
-	}, [animationData]);
 
 	return (
 		<Section>
-			<Navbar />
+			<Suspense fallback={null}>
+				<Navbar />
+			</Suspense>
 			<Container>
 				<LeftContainer>
 					<AnimatedTitle>
@@ -197,53 +165,16 @@ function Hero() {
 					</AnimatedTitle>
 				</LeftContainer>
 				<RightContainer>
-					<Canvas style={{ background: 'transparent' }}>
-						<Suspense fallback={null}>
-							<OrbitControls
-								enableZoom={false}
-								autoRotate={true}
-								enableRotate={false}
-								autoRotateSpeed={3}
-								rotation={[0, 0, 0]}
-							/>
-							<ambientLight
-								intensity={0.7}
-								color='hsl(0, 0%, 100%)'
-								color={
-									isDark
-										? darkTheme.threeJS.three_Model_Hero_Ambient_Color
-										: lightTheme.threeJS
-												.three_Model_Hero_Ambient_Color
-								}
-								position={[10, 10, 10]}
-							/>
-							<directionalLight position={[3, 2, 1]} />
-							<directionalLight position={[-3, 2, 1]} />
-							<Sphere
-								args={[0.9, 100, 200]}
-								scale={2.3}
-							>
-								<MeshDistortMaterial
-									color={
-										isDark
-											? darkTheme.threeJS.three_Model_Hero_Color
-											: lightTheme.threeJS.three_Model_Hero_Color
-									}
-									attach='material'
-									distort={0.35}
-									speed={0.5}
-								/>
-							</Sphere>
-						</Suspense>
-					</Canvas>
-					<LottieRightHero
-						className='lottie'
-						ref={animationRef}
-					></LottieRightHero>
+					<Suspense fallback={null}>
+						<HeroRightBlob />
+					</Suspense>
+					<Suspense fallback={null}>
+						<LottieRightHero />
+					</Suspense>
 				</RightContainer>
 			</Container>
 		</Section>
 	);
-}
+};
 
-export default Hero;
+export default HomePage;
