@@ -14,27 +14,25 @@
 	"dependencies": {
 		"@emailjs/browser": "^3.11.0",
 		"@react-spring/three": "^9.7.2",
-		"@react-three/drei": "^9.66.2",
+		"@react-three/drei": "^9.66.3",
 		"@react-three/fiber": "^8.13.0",
-		"@react-three/postprocessing": "^2.10.0",
 		"@vitejs/plugin-legacy": "^4.0.3",
-		"gh-pages": "^5.0.0",
 		"lottie-web": "^5.11.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.8.0",
 		"react-simple-maps": "^3.0.0",
 		"styled-components": "^5.3.10",
-		"three": "^0.152.2",
+		"three": "0.152.2",
 		"vite-plugin-mkcert": "^1.14.1",
 		"vite-plugin-svgr": "^3.2.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.2.2",
-		"@types/react-dom": "^18.2.3",
+		"@types/react": "^18.2.5",
+		"@types/react-dom": "^18.2.4",
 		"@vitejs/plugin-react": "^4.0.0",
 		"@vitejs/plugin-react-swc": "^3.3.0",
-		"eslint": "^8.39.0",
+		"eslint": "^8.40.0",
 		"eslint-config-airbnb": "^19.0.4",
 		"eslint-plugin-import": "^2.27.5",
 		"eslint-plugin-jsx-a11y": "^6.7.1",
@@ -42,8 +40,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"react-error-overlay": "^6.0.11",
 		"terser": "^5.17.1",
-		"vite": "^4.3.4",
-		"vite-plugin-qrcode": "^0.2.1",
-		"vite-plugin-webfont-dl": "^3.7.3"
+		"vite": "^4.3.5",
+		"vite-plugin-webfont-dl": "^3.7.4"
 	}
 }

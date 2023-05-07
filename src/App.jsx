@@ -1,11 +1,11 @@
 import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
 import { lightTheme, darkTheme, useDarkMode } from './contexts/theme-context';
-
-const HomePage = lazy(() => import('./components/HomePage'));
-const Who = lazy(() => import('./components/Who'));
-const Works = lazy(() => import('./components/Works'));
-const Contact = lazy(() => import('./components/Contact'));
+import Who from './components/Who';
+import HomePage from './components/HomePage';
+// const HomePage = lazy(() => import('./components/HomePage'));
+// const Works = lazy(() => import('./components/Works'));
+// const Contact = lazy(() => import('./components/Contact'));
 
 const Container = styled.div`
 	height: 100vh;
@@ -32,12 +32,10 @@ function App() {
 					: lightTheme.colors.background_Main
 			}
 		>
-			<Suspense fallback={null}>
-				<HomePage />
-				<Who />
-				<Works />
-				<Contact />
-			</Suspense>
+			<HomePage />
+			{/* <Who /> */}
+			{/* <Works /> */}
+			{/* <Contact /> */}
 		</Container>
 	);
 }
