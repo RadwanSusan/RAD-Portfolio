@@ -177,10 +177,6 @@ const Navbar = () => {
 		[handleListItemHover],
 	);
 
-	const logoSrc = React.useMemo(() => {
-		return isDark ? lightLogo : darkLogo;
-	}, [isDark]);
-
 	const sectionStyles = isDark ? darkTheme.colors : lightTheme.colors;
 	const containerStyles = isDark
 		? darkTheme.colors.navBar_Container
@@ -196,7 +192,7 @@ const Navbar = () => {
 					<Links>
 						<Logo
 							alt='Logo'
-							src={logoSrc}
+							src={isDark ? lightLogo : darkLogo}
 							height='80px'
 							width='80px'
 							onClick={() =>
