@@ -40,7 +40,6 @@ const Container = styled.div`
 `;
 
 const Logo = styled.img`
-	height: 80px;
 	-webkit-user-drag: none;
 	user-drag: none;
 	cursor: pointer;
@@ -198,7 +197,8 @@ const Navbar = () => {
 						<Logo
 							alt='Logo'
 							src={logoSrc}
-							fetchpriority='low'
+							height='80px'
+							width='80px'
 							onClick={() =>
 								document.getElementById('about').scrollIntoView({
 									behavior: 'smooth',
