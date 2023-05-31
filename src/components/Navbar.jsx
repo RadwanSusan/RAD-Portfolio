@@ -11,7 +11,8 @@ const BiMoon = React.lazy(() =>
 const BiSun = React.lazy(() =>
 	import('react-icons/bi').then((module) => ({ default: module.BiSun })),
 );
-
+import lightLogo from '/src/media/lightLogoSVG.png';
+import darkLogo from '/src/media/darkLogoSVG.png';
 import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
 
 const Section = styled.div`
@@ -178,9 +179,7 @@ const Navbar = () => {
 	);
 
 	const logoSrc = React.useMemo(() => {
-		return isDark
-			? '../../media/lightLogoSVG.png'
-			: '../../media/Untitled4.png';
+		return isDark ? lightLogo : darkLogo;
 	}, [isDark]);
 
 	const sectionStyles = isDark ? darkTheme.colors : lightTheme.colors;
@@ -199,6 +198,7 @@ const Navbar = () => {
 						<Logo
 							alt='Logo'
 							src={logoSrc}
+							fetchpriority='low'
 							onClick={() =>
 								document.getElementById('about').scrollIntoView({
 									behavior: 'smooth',
