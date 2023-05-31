@@ -13,7 +13,7 @@ const Container = styled.div`
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
-	gap: 50px;
+	gap: 150px;
 `;
 
 const Left = styled.div`

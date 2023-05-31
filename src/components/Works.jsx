@@ -1,16 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-// import Development from './Development';
-// import ProductDesign from './ProductDesign';
-import WebDesign from './WebDesign';
-
-const data = [
-	'Web Design',
-	'Development',
-	'Illustration',
-	'Product Design',
-	'Social Media',
-];
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
 
 const Section = styled.div`
 	height: 100vh;
@@ -27,7 +17,6 @@ const Container = styled.div`
 	width: 1400px;
 	display: flex;
 	justify-content: space-between;
-
 	@media only screen and (max-width: 768px) {
 		width: 100%;
 		flex-direction: column;
@@ -38,7 +27,6 @@ const Left = styled.div`
 	flex: 1;
 	display: flex;
 	align-items: center;
-
 	@media only screen and (max-width: 768px) {
 		padding: 20px;
 		justify-content: center;
@@ -49,13 +37,13 @@ const List = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 10px;
+	margin-left: 50px;
 `;
 
 const ListItem = styled.li`
-	font-size: 90px;
+	font-size: 80px;
 	font-weight: bold;
-	cursor: pointer;
 	color: transparent;
 	-webkit-text-stroke: 1px white;
 	position: relative;
@@ -71,7 +59,7 @@ const ListItem = styled.li`
 		position: absolute;
 		top: 0;
 		left: 0;
-		color: pink;
+		color: white;
 		width: 0px;
 		overflow: hidden;
 		white-space: nowrap;
@@ -80,7 +68,6 @@ const ListItem = styled.li`
 	&:hover {
 		::after {
 			animation: moveText 0.5s linear both;
-
 			@keyframes moveText {
 				to {
 					width: 100%;
@@ -89,23 +76,181 @@ const ListItem = styled.li`
 		}
 	}
 `;
-
 const Right = styled.div`
 	flex: 1;
 `;
 
+const Wrapper = styled.div`
+	position: absolute;
+	left: 60%;
+	top: 34%;
+`;
+
+const Side = styled.div`
+	width: 25rem;
+	height: 5rem;
+	position: relative;
+`;
+
+const Span = styled.span`
+	display: block;
+	width: 25rem;
+	height: 2.5rem;
+`;
+
+const Side1 = styled(Side)`
+	clip-path: polygon(5% 0%, 100% 1%, 100% 100%, 7% 100%, 0% 50%);
+	transform: rotate(32deg);
+	width: 22rem;
+	z-index: 10;
+	left: -2px;
+`;
+
+const Side2 = styled(Side)`
+	clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 91% 100%, 0% 100%);
+	top: 5.1rem;
+	left: 1.6rem;
+	transform: rotate(-35deg);
+	width: 22rem;
+	z-index: 20;
+`;
+
+const Side3Half = styled(Side)`
+	width: 13rem;
+	clip-path: polygon(14% 0%, 98% 0%, 100% 50%, 98% 100%, 15% 100%);
+	transform: rotate(90deg);
+	left: -2.5rem;
+`;
+
+const Side31 = styled(Side3Half)`
+	z-index: 5;
+	top: -9rem;
+`;
+
+const Side32 = styled(Side3Half)`
+	z-index: 30;
+	top: -1.8rem;
+	left: -2rem;
+	width: 12rem;
+	clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 90% 100%, 0% 100%);
+`;
+
+const ballMove = keyframes`
+8% {
+	top: 10rem;
+	left: 16.5rem;
+	z-index: 30;
+ }
+ 14% {
+	top: 19.5rem;
+	left: 4rem;
+	z-index: 30;
+ }
+ 15% {
+	z-index: 30;
+ }
+ 16% {
+	z-index: 4;
+ }
+ 23% {
+	top: 1rem;
+	left: 4rem;
+	z-index: 1;
+ }
+ 33% {
+	top: 11.5rem;
+	left: 20rem;
+	z-index: 10;
+ }
+ 34% {
+	z-index: 50;
+ }
+ 42% {
+	top: 24rem;
+	left: 3rem;
+	z-index: 50;
+ }
+ 44%, 45%, 46% {
+	z-index: 31;
+ }
+ 47% {
+	z-index: 31;
+ }
+ 48% {
+	z-index: 31;
+ }
+ 49% {
+	z-index: 8;
+ }
+ 52% {
+	top: 7rem;
+	left: 4rem;
+	z-index: 8;
+ }
+ 61% {
+	top: 15.5rem;
+	left: 17rem;
+	z-index: 10;
+ }
+ 68% {
+	top: 26.5rem;
+	z-index: 5;
+	left: 0;
+ }
+ 69% {
+	z-index: 35;
+ }
+ 78% {
+	top: 3.5rem;
+	left: 0;
+	z-index: 35;
+ }
+ 86% {
+	top: 12rem;
+	left: 13rem;
+	z-index: 15;
+ }
+ 93% {
+	top: 23rem;
+	left: -1rem;
+	z-index: 2;
+ }
+ 99% {
+	z-index: 4;
+ }
+`;
+
+const Ball = styled.div`
+	width: 2rem;
+	height: 2rem;
+	background: whitesmoke;
+	border-radius: 100%;
+	position: absolute;
+	z-index: 20;
+	transform: translateY(-5.5rem) translateX(1.5rem);
+	top: -0.5rem;
+	left: -0.75rem;
+	animation: ${ballMove} 10s infinite linear;
+`;
+
 const Works = () => {
-	const [work, setWork] = useState('Web Design');
+	const { isDark } = useDarkMode();
+	const data = [
+		'Web Design',
+		'Development',
+		'Illustration',
+		'Product Design',
+		'Social Media',
+	];
 	return (
 		<Section>
 			<Container>
 				<Left>
 					<List>
-						{data.forEach((item) => (
+						{data.map((item) => (
 							<ListItem
 								key={item}
 								text={item}
-								onClick={() => setWork(item)}
 							>
 								{item}
 							</ListItem>
@@ -113,13 +258,25 @@ const Works = () => {
 					</List>
 				</Left>
 				<Right>
-					{work === 'Web Design' ? (
-						<WebDesign />
-					) : work === 'Development' ? (
-						<Development />
-					) : (
-						/* <ProductDesign /> */ <h1>Product Design</h1>
-					)}
+					<Wrapper>
+						<Ball />
+						<Side1>
+							<Span style={{ backgroundColor: '#ffbdb8' }} />
+							<Span style={{ backgroundColor: '#163d37' }} />
+						</Side1>
+						<Side2>
+							<Span style={{ backgroundColor: '#ffbdb8' }} />
+							<Span style={{ backgroundColor: '#0156f0' }} />
+						</Side2>
+						<Side31>
+							<Span style={{ backgroundColor: '#0156f0' }} />
+							<Span style={{ backgroundColor: '#163d37' }} />
+						</Side31>
+						<Side32>
+							<Span style={{ backgroundColor: '#0156f0' }} />
+							<Span style={{ backgroundColor: '#163d37' }} />
+						</Side32>
+					</Wrapper>
 				</Right>
 			</Container>
 		</Section>

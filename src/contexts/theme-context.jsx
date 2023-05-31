@@ -48,6 +48,8 @@ export const lightTheme = {
 		textTopBorder: '0.7vmin solid black',
 		SectionBoxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
 		SectionBoxBackgroundColor: 'rgba(255, 255, 255, 0.25)',
+		whoTitleColor: '#000',
+		whoDescColor: '#272727',
 	},
 	threeJS: {
 		three_Model_Hero_Color: 'hsl(229, 19%, 12%)',
@@ -75,6 +77,8 @@ export const darkTheme = {
 		textTopBorder: '0.7vmin solid white',
 		SectionBoxShadow: '0px 4px 4px rgba(0, 0, 0, 0.45)',
 		SectionBoxBackgroundColor: 'rgba(0, 0, 0, 0.15)',
+		whoTitleColor: '#fff',
+		whoDescColor: '#e0e0e0',
 	},
 	threeJS: {
 		three_Model_Hero_Color: 'hsl(261, 100%, 16%)',

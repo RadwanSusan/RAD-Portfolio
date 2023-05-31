@@ -24,10 +24,11 @@ const Section = styled.div`
 	position: fixed;
 	display: flex;
 	justify-content: center;
-	z-index: 2;
+	z-index: 9999;
 	border-radius: 0px 0px 20px 20px;
-	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	-webkit-user-select: none;
 	user-select: none;
 	box-shadow: ${(props) => props.$SectionBoxShadow};
 	background-color: ${(props) => props.$SectionBoxBackgroundColor};
@@ -45,8 +46,8 @@ const Container = styled.div`
 
 const Logo = styled.img`
 	height: 80px;
-	user-drag: none;
 	-webkit-user-drag: none;
+	user-drag: none;
 `;
 
 const Links = styled.div`
@@ -135,14 +136,15 @@ const ListItem = styled.li`
 	font-size: 19px;
 	cursor: pointer;
 	text-decoration-thickness: 2px;
-	text-underline-offset: 4.7px;
-	transition: text-underline-offset 0.1s ease-in-out, opacity 0.25s ease-in-out;
-	:hover {
+	text-underline-offset: 6.7px;
+	transition: text-underline-offset 0.1s ease-in-out, opacity 0.25s ease-in-out,
+		text-decoration 0.1s ease-in-out;
+	${(props) => (props.ishovered == 'false' ? ` opacity: 0.3;` : ``)}
+	&:hover {
 		text-decoration: underline;
-		text-underline-offset: 7px;
+		text-underline-offset: 4.7px;
 		text-decoration-thickness: 1.5px;
 	}
-	${(props) => props.isHovered && ` opacity: 0.3;`}
 `;
 
 const List = styled.ul`
@@ -150,7 +152,7 @@ const List = styled.ul`
 	gap: 25px;
 	list-style: none;
 	transition: all 1.5s ease-in-out;
-	:hover ${ListItem}:hover {
+	&:hover ${ListItem}:hover {
 		color: ${(props) => props.$linksColor};
 	}
 `;
@@ -213,7 +215,10 @@ const Navbar = () => {
 				}
 			>
 				<Links>
-					<Logo src={logoSrc} />
+					<Logo
+						alt='Logo'
+						src={logoSrc}
+					/>
 					<List
 						$linksColor={
 							isDark
@@ -227,7 +232,7 @@ const Navbar = () => {
 							return (
 								<ListItem
 									key={item.id}
-									isHovered={isHovered}
+									ishovered={`${!isHovered}`}
 									onMouseEnter={() => handleMouseEnter(index)}
 									onMouseLeave={handleMouseLeave}
 									$linksColor={

@@ -134,35 +134,37 @@ const HomePage = () => {
 			</Suspense>
 			<Container>
 				<LeftContainer>
-					<AnimatedTitle>
-						<div
-							className='text-top'
-							style={{
-								color: isDark
-									? darkTheme.colors.TitleAndDesc
-									: lightTheme.colors.TitleAndDesc,
-							}}
-						>
-							<div>
-								<span>Hi,</span>
-								<span>I'm Radwan</span>
-								<span>A Full Stack Web Developer</span>
+					<Suspense fallback={null}>
+						<AnimatedTitle>
+							<div
+								className='text-top'
+								style={{
+									color: isDark
+										? darkTheme.colors.TitleAndDesc
+										: lightTheme.colors.TitleAndDesc,
+								}}
+							>
+								<div>
+									<span>Hi,</span>
+									<span>I'm Radwan</span>
+									<span>A Full Stack Web Developer</span>
+								</div>
 							</div>
-						</div>
-						<div
-							className='text-bottom'
-							style={{
-								color: isDark
-									? darkTheme.colors.TitleAndDesc
-									: lightTheme.colors.TitleAndDesc,
-							}}
-						>
-							<BottomDesc>
-								A Full Stack Web Developer with a passion for creating
-								beautiful and modern websites.
-							</BottomDesc>
-						</div>
-					</AnimatedTitle>
+							<div
+								className='text-bottom'
+								style={{
+									color: isDark
+										? darkTheme.colors.TitleAndDesc
+										: lightTheme.colors.TitleAndDesc,
+								}}
+							>
+								<BottomDesc>
+									A Full Stack Web Developer with a passion for
+									creating beautiful and modern websites.
+								</BottomDesc>
+							</div>
+						</AnimatedTitle>
+					</Suspense>
 				</LeftContainer>
 				<RightContainer>
 					<Suspense fallback={null}>

@@ -1,9 +1,9 @@
-import React, { Suspense, lazy } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { OrbitControls } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-
-const Cube = lazy(() => import('./Cube'));
+import { Canvas, useThree } from '@react-three/fiber';
+import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
+import Cube from './Cube';
 
 const Section = styled.div`
 	height: 100vh;
@@ -17,6 +17,7 @@ const Container = styled.div`
 	scroll-snap-align: center;
 	width: 1400px;
 	display: flex;
+	gap: 100px;
 	justify-content: space-between;
 `;
 
@@ -28,14 +29,19 @@ const Left = styled.div`
 `;
 
 const Title = styled.h1`
-	font-size: 74px;
+	font-size: 60px;
+	font-family: 'Nunito', sans-serif;
+	color: ${(props) => props.$whoTitleColor};
+	text-decoration: underline;
+	text-underline-offset: 20px;
+	text-decoration-thickness: 6px;
 	@media only screen and (max-width: 768px) {
 		font-size: 60px;
 	}
 `;
 
 const Right = styled.div`
-	flex: 1;
+	flex: 2;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -46,66 +52,89 @@ const Right = styled.div`
 	}
 `;
 
-const WhatWeDo = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 10px;
-`;
-
-const Line = styled.img`
-	height: 5px;
-`;
-
-const Subtitle = styled.h2`
-	color: #222;
-`;
-
 const Desc = styled.p`
 	font-size: 24px;
-	color: #222;
+	color: ${(props) => props.$whoDescColor};
 `;
 
-const Button = styled.button`
-	background-color: #222;
-	color: white;
-	font-weight: 500;
-	width: 120px;
-	padding: 10px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-`;
+const CameraControls = () => {
+	const { camera } = useThree();
+	const controls = useRef();
+
+	useEffect(() => {
+		camera.rotation.x = 3.5;
+		camera.rotation.y = 0.5;
+		camera.rotation.z = 0.5;
+	}, [camera]);
+
+	return (
+		<OrbitControls
+			ref={controls}
+			args={[camera, document.querySelector('canvas')]}
+			enableZoom={false}
+			enablePan={false}
+			enableRotate={true}
+			autoRotate={true}
+			autoRotateSpeed={0.3}
+		/>
+	);
+};
 
 const Who = () => {
+	const { isDark } = useDarkMode();
+
 	return (
 		<Section>
 			<Container>
 				<Left>
 					<Canvas
-						camera={{ position: [5, 5, 5], fov: 25 }}
-						antialias='true'
+						camera={{
+							position: [0, 0, 7],
+							fov: 37,
+						}}
 					>
-						<Suspense fallback={null}>
-							<ambientLight intensity={0.5} />
-							<directionalLight position={[3, 2, 1]} />
-							<Cube />
-							<OrbitControls
-								enableZoom={false}
-								autoRotate
-							/>
-						</Suspense>
+						<Cube />
+						<CameraControls />
 					</Canvas>
 				</Left>
 				<Right>
-					<Title>Think outside the square space</Title>
-					<WhatWeDo>
-						<Subtitle>Who we Are</Subtitle>
-					</WhatWeDo>
-					<Desc>
-						a creative group of designers and developers with a passion
-						for the arts.
+					<Title
+						$whoTitleColor={
+							isDark
+								? darkTheme.colors.whoTitleColor
+								: lightTheme.colors.whoTitleColor
+						}
+					>
+						My Skills
+					</Title>
+					<Desc
+						$whoDescColor={
+							isDark
+								? darkTheme.colors.whoDescColor
+								: lightTheme.colors.whoDescColor
+						}
+					>
+						HTML, CSS, SASS, JavaScript, Typescript, jQuery, React, Redux
+						Toolkit, NextJS
 					</Desc>
-					<Button>See our works</Button>
+					<Desc
+						$whoDescColor={
+							isDark
+								? darkTheme.colors.whoDescColor
+								: lightTheme.colors.whoDescColor
+						}
+					>
+						NodeJS, ExpressJS, MongoDB, MySQL
+					</Desc>
+					<Desc
+						$whoDescColor={
+							isDark
+								? darkTheme.colors.whoDescColor
+								: lightTheme.colors.whoDescColor
+						}
+					>
+						PHP, Git, Figma, Wordpress
+					</Desc>
 				</Right>
 			</Container>
 		</Section>
