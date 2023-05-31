@@ -1,10 +1,4 @@
-import React, {
-	useState,
-	useCallback,
-	useEffect,
-	useMemo,
-	Suspense,
-} from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 const RiSearch2Line = React.lazy(() =>
 	import('react-icons/ri').then((module) => ({
@@ -48,6 +42,7 @@ const Logo = styled.img`
 	height: 80px;
 	-webkit-user-drag: none;
 	user-drag: none;
+	cursor: pointer;
 `;
 
 const Links = styled.div`
@@ -159,227 +154,143 @@ const List = styled.ul`
 
 const Navbar = () => {
 	const { isDark, toggleDarkMode } = useDarkMode();
-	const [hoveredIndex, setHoveredIndex] = useState(null);
-	const [logoSrc, setLogoSrc] = useState(
-		isDark ? '../../media/lightLogoSVG.png' : '../../media/Untitled4.png',
-	);
+	const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
-	const menuItems = useMemo(
-		() => [
-			{ id: 1, name: 'My Skills' },
-			{ id: 2, name: 'About' },
-			{ id: 3, name: 'Works' },
-			{ id: 4, name: 'Contact' },
-		],
-		[],
-	);
+	const menuItems = [
+		{ id: 1, name: 'My Skills', scrollId: 'my-skills' },
+		{ id: 2, name: 'About', scrollId: 'about' },
+		{ id: 3, name: 'Works', scrollId: 'works' },
+		{ id: 4, name: 'Contact', scrollId: 'contact' },
+	];
 
-	const handleListItemHover = useCallback((index) => {
+	const handleListItemHover = React.useCallback((index) => {
 		setHoveredIndex(index);
 	}, []);
 
-	useEffect(() => {
-		setLogoSrc(
-			isDark ? '../../media/lightLogoSVG.png' : '../../media/Untitled4.png',
-		);
-	}, [isDark]);
-
-	const handleMouseEnter = useCallback(
+	const handleMouseEnter = React.useCallback(
 		(index) => handleListItemHover(index),
 		[handleListItemHover],
 	);
 
-	const handleMouseLeave = useCallback(
+	const handleMouseLeave = React.useCallback(
 		() => handleListItemHover(null),
 		[handleListItemHover],
 	);
 
-	return (
-		<Section
-			$SectionBoxShadow={
-				isDark
-					? darkTheme.colors.SectionBoxShadow
-					: lightTheme.colors.SectionBoxShadow
-			}
-			$SectionBoxBackgroundColor={
-				isDark
-					? darkTheme.colors.SectionBoxBackgroundColor
-					: lightTheme.colors.SectionBoxBackgroundColor
-			}
-		>
-			<Container
-				$navBarContainer={
-					isDark
-						? darkTheme.colors.navBar_Container
-						: lightTheme.colors.navBar_Container
-				}
-			>
-				<Links>
-					<Logo
-						alt='Logo'
-						src={logoSrc}
-					/>
-					<List
-						$linksColor={
-							isDark
-								? darkTheme.colors.linksColor
-								: lightTheme.colors.linksColor
-						}
-					>
-						{menuItems.map((item, index) => {
-							const isHovered =
-								hoveredIndex !== null && index !== hoveredIndex;
-							return (
-								<ListItem
-									key={item.id}
-									ishovered={`${!isHovered}`}
-									onMouseEnter={() => handleMouseEnter(index)}
-									onMouseLeave={handleMouseLeave}
-									$linksColor={
-										isDark
-											? darkTheme.colors.linksColor
-											: lightTheme.colors.linksColor
-									}
-								>
-									{item.name}
-								</ListItem>
-							);
-						})}
-					</List>
-				</Links>
-				<Icons>
-					<Suspense fallback={null}>
-						<SearchIcon
-							$iconColors={
-								isDark
-									? darkTheme.colors.iconColors
-									: lightTheme.colors.iconColors
-							}
-							$iconColorsHover={
-								isDark
-									? darkTheme.colors.iconColorsHover
-									: lightTheme.colors.iconColorsHover
-							}
-							$iconBoxShadow={
-								isDark
-									? darkTheme.colors.iconBoxShadow
-									: lightTheme.colors.iconBoxShadow
-							}
-							$iconFillColor={
-								isDark
-									? darkTheme.colors.iconFillColor
-									: lightTheme.colors.iconFillColor
-							}
-							$iconFillColorHover={
-								isDark
-									? darkTheme.colors.iconFillColorHover
-									: lightTheme.colors.iconFillColorHover
-							}
-						/>
-					</Suspense>
-					<Suspense fallback={null}>
-						<MoonIcon
-							className='moonDarkButton'
-							onClick={toggleDarkMode}
-							style={{ display: isDark ? 'none' : 'block' }}
-							$iconColors={
-								isDark
-									? darkTheme.colors.iconColors
-									: lightTheme.colors.iconColors
-							}
-							$iconColorsHover={
-								isDark
-									? darkTheme.colors.iconColorsHover
-									: lightTheme.colors.iconColorsHover
-							}
-							$iconBoxShadow={
-								isDark
-									? darkTheme.colors.iconBoxShadow
-									: lightTheme.colors.iconBoxShadow
-							}
-							$iconFillColor={
-								isDark
-									? darkTheme.colors.iconFillColor
-									: lightTheme.colors.iconFillColor
-							}
-							$iconFillColorHover={
-								isDark
-									? darkTheme.colors.iconFillColorHover
-									: lightTheme.colors.iconFillColorHover
-							}
-						/>
-					</Suspense>
-					<Suspense fallback={null}>
-						<SunIcon
-							className='sunLightButton'
-							onClick={toggleDarkMode}
-							style={{ display: isDark ? 'block' : 'none' }}
-							$iconColors={
-								isDark
-									? darkTheme.colors.iconColors
-									: lightTheme.colors.iconColors
-							}
-							$iconColorsHover={
-								isDark
-									? darkTheme.colors.iconColorsHover
-									: lightTheme.colors.iconColorsHover
-							}
-							$
-							$iconBoxShadow={
-								isDark
-									? darkTheme.colors.iconBoxShadow
-									: lightTheme.colors.iconBoxShadow
-							}
-							$iconFillColor={
-								isDark
-									? darkTheme.colors.iconFillColor
-									: lightTheme.colors.iconFillColor
-							}
-							$iconFillColorHover={
-								isDark
-									? darkTheme.colors.iconFillColorHover
-									: lightTheme.colors.iconFillColorHover
-							}
-						/>
-					</Suspense>
+	const logoSrc = React.useMemo(() => {
+		return isDark
+			? '../../media/lightLogoSVG.png'
+			: '../../media/Untitled4.png';
+	}, [isDark]);
 
-					<Button
-						$backgroundColor={
-							isDark
-								? darkTheme.colors.NavbarButtonColorBackground
-								: lightTheme.colors.NavbarButtonColorBackground
-						}
-						$Buttoncolor={
-							isDark
-								? darkTheme.colors.NavbarButtonColor
-								: lightTheme.colors.NavbarButtonColor
-						}
-						$NavbarButtonBorder={
-							isDark
-								? darkTheme.colors.NavbarButtonBorder
-								: lightTheme.colors.NavbarButtonBorder
-						}
-						$NavbarButtonColorBackgroundHover={
-							isDark
-								? darkTheme.colors.NavbarButtonColorBackgroundHover
-								: lightTheme.colors.NavbarButtonColorBackgroundHover
-						}
-						$NavbarButtonColorHover={
-							isDark
-								? darkTheme.colors.NavbarButtonColorHover
-								: lightTheme.colors.NavbarButtonColorHover
-						}
-						$NavbarButtonBorderHover={
-							isDark
-								? darkTheme.colors.NavbarButtonBorderHover
-								: lightTheme.colors.NavbarButtonBorderHover
-						}
-					>
-						Contact
-					</Button>
-				</Icons>
-			</Container>
-		</Section>
+	const sectionStyles = isDark ? darkTheme.colors : lightTheme.colors;
+	const containerStyles = isDark
+		? darkTheme.colors.navBar_Container
+		: lightTheme.colors.navBar_Container;
+
+	return (
+		<Suspense fallback={null}>
+			<Section
+				$SectionBoxShadow={sectionStyles.SectionBoxShadow}
+				$SectionBoxBackgroundColor={sectionStyles.SectionBoxBackgroundColor}
+			>
+				<Container $navBarContainer={containerStyles}>
+					<Links>
+						<Logo
+							alt='Logo'
+							src={logoSrc}
+							onClick={() =>
+								document.getElementById('about').scrollIntoView({
+									behavior: 'smooth',
+								})
+							}
+						/>
+						<List $linksColor={sectionStyles.linksColor}>
+							{menuItems.map((item, index) => {
+								const isHovered =
+									hoveredIndex !== null && index !== hoveredIndex;
+								return (
+									<ListItem
+										key={item.id}
+										ishovered={`${!isHovered}`}
+										onMouseEnter={() => handleMouseEnter(index)}
+										onMouseLeave={handleMouseLeave}
+										$linksColor={sectionStyles.linksColor}
+										onClick={() =>
+											document
+												.getElementById(item.scrollId)
+												.scrollIntoView({
+													behavior: 'smooth',
+												})
+										}
+									>
+										{item.name}
+									</ListItem>
+								);
+							})}
+						</List>
+					</Links>
+					<Icons>
+						<Suspense fallback={null}>
+							<SearchIcon
+								$iconColors={sectionStyles.iconColors}
+								$iconColorsHover={sectionStyles.iconColorsHover}
+								$iconBoxShadow={sectionStyles.iconBoxShadow}
+								$iconFillColor={sectionStyles.iconFillColor}
+								$iconFillColorHover={sectionStyles.iconFillColorHover}
+							/>
+						</Suspense>
+						<Suspense fallback={null}>
+							<MoonIcon
+								className='moonDarkButton'
+								onClick={toggleDarkMode}
+								style={{ display: isDark ? 'none' : 'block' }}
+								$iconColors={sectionStyles.iconColors}
+								$iconColorsHover={sectionStyles.iconColorsHover}
+								$iconBoxShadow={sectionStyles.iconBoxShadow}
+								$iconFillColor={sectionStyles.iconFillColor}
+								$iconFillColorHover={sectionStyles.iconFillColorHover}
+							/>
+						</Suspense>
+						<Suspense fallback={null}>
+							<SunIcon
+								className='sunLightButton'
+								onClick={toggleDarkMode}
+								style={{ display: isDark ? 'block' : 'none' }}
+								$iconColors={sectionStyles.iconColors}
+								$iconColorsHover={sectionStyles.iconColorsHover}
+								$iconBoxShadow={sectionStyles.iconBoxShadow}
+								$iconFillColor={sectionStyles.iconFillColor}
+								$iconFillColorHover={sectionStyles.iconFillColorHover}
+							/>
+						</Suspense>
+						<Button
+							onClick={() =>
+								document.getElementById('contact').scrollIntoView({
+									behavior: 'smooth',
+								})
+							}
+							$backgroundColor={
+								sectionStyles.NavbarButtonColorBackground
+							}
+							$Buttoncolor={sectionStyles.NavbarButtonColor}
+							$NavbarButtonBorder={sectionStyles.NavbarButtonBorder}
+							$NavbarButtonColorBackgroundHover={
+								sectionStyles.NavbarButtonColorBackgroundHover
+							}
+							$NavbarButtonColorHover={
+								sectionStyles.NavbarButtonColorHover
+							}
+							$NavbarButtonBorderHover={
+								sectionStyles.NavbarButtonBorderHover
+							}
+						>
+							Contact
+						</Button>
+					</Icons>
+				</Container>
+			</Section>
+		</Suspense>
 	);
 };
 

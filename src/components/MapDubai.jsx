@@ -4,17 +4,19 @@ import {
 	Geographies,
 	Geography,
 	Annotation,
-	ZoomableGroup,
 } from 'react-simple-maps';
+import { useDarkMode } from '../contexts/theme-context';
 
-const Map = () => {
+const MapDubai = () => {
+	const { isDark } = useDarkMode();
+
 	return (
 		<ComposableMap
 			projection='geoAzimuthalEqualArea'
 			projectionConfig={{
-				rotate: [-10.0, -52.0, 0],
-				center: [-5, -3],
-				scale: 1600,
+				rotate: [-34.0, -47.0, 0],
+				center: [20, -21],
+				scale: 1500,
 			}}
 			style={{ width: '100%', height: '100%' }}
 		>
@@ -22,7 +24,7 @@ const Map = () => {
 				geography='/media/features.json'
 				fill='#222'
 				stroke='#FFFFFF'
-				strokeWidth={0.5}
+				strokeWidth={1}
 			>
 				{({ geographies }) =>
 					geographies.map((geo) => (
@@ -34,45 +36,27 @@ const Map = () => {
 				}
 			</Geographies>
 			<Annotation
-				subject={[2.3522, 48.8566]}
-				dx={-90}
-				dy={-30}
+				subject={[55.4522, 25.3]}
+				dx={-60}
+				dy={-20}
 				connectorProps={{
-					stroke: 'white',
+					stroke: isDark ? 'white' : '#000',
 					strokeWidth: 2,
 					strokeLinecap: 'round',
 				}}
 			>
 				<text
-					x='-8'
+					x='-5'
 					textAnchor='end'
 					alignmentBaseline='middle'
-					fill='white'
+					fill={isDark ? 'white' : '#000'}
+					fontSize='20px'
 				>
-					{'Paris'}
-				</text>
-			</Annotation>
-			<Annotation
-				subject={[21.01178, 52.22977]}
-				dx={-90}
-				dy={-30}
-				connectorProps={{
-					stroke: 'white',
-					strokeWidth: 2,
-					strokeLinecap: 'round',
-				}}
-			>
-				<text
-					x='-8'
-					textAnchor='end'
-					alignmentBaseline='middle'
-					fill='white'
-				>
-					{'Warsaw'}
+					{'Dubai'}
 				</text>
 			</Annotation>
 		</ComposableMap>
 	);
 };
 
-export default Map;
+export default MapDubai;

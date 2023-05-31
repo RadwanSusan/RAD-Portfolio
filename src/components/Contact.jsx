@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, lazy, Suspense } from 'react';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
-import Map from './Map';
+const MapDubai = lazy(() => import('./MapDubai'));
+import { lightTheme, darkTheme, useDarkMode } from '../contexts/theme-context';
 
 const Section = styled.div`
 	height: 100vh;
@@ -28,6 +29,7 @@ const Left = styled.div`
 
 const Title = styled.h1`
 	font-weight: 200;
+	color: ${(props) => props.$ContactTitleColor};
 `;
 
 const Form = styled.form`
@@ -72,6 +74,7 @@ const Right = styled.div`
 `;
 
 const Contact = () => {
+	const { isDark } = useDarkMode();
 	const ref = useRef();
 	const [success, setSuccess] = useState(null);
 
@@ -79,47 +82,84 @@ const Contact = () => {
 		e.preventDefault();
 
 		emailjs
-			.sendForm('service_id', 'template_id', ref.current, 'public_key')
+			.sendForm(
+				'service_kmcm19i',
+				'template_g6tis0s',
+				ref.current,
+				'gJJw9oRmwKZw8k8YF',
+			)
 			.then(
 				(result) => {
 					console.log(result.text);
 					setSuccess(true);
+					ref.current.reset();
+					setTimeout(() => {
+						setSuccess(false);
+					}, 4000);
 				},
 				(error) => {
 					console.log(error.text);
 					setSuccess(false);
+					ref.current.reset();
 				},
 			);
 	};
 	return (
 		<Section>
-			<Container>
+			<Container id='contact'>
 				<Left>
 					<Form
 						ref={ref}
 						onSubmit={handleSubmit}
 					>
-						<Title>Contact Us</Title>
+						<Title
+							$ContactTitleColor={
+								isDark
+									? darkTheme.colors.ContactTitleColor
+									: lightTheme.colors.ContactTitleColor
+							}
+						>
+							Contact Me
+						</Title>
 						<Input
 							placeholder='Name'
 							name='name'
+							autoComplete='on'
+							style={
+								isDark
+									? { border: 'none' }
+									: { border: '1px solid #000' }
+							}
 						/>
 						<Input
 							placeholder='Email'
 							name='email'
+							autoComplete='on'
+							style={
+								isDark
+									? { border: 'none' }
+									: { border: '1px solid #000' }
+							}
 						/>
 						<TextArea
 							placeholder='Write your message'
 							name='message'
 							rows={10}
+							style={
+								isDark
+									? { border: 'none' }
+									: { border: '1px solid #000' }
+							}
 						/>
 						<Button type='submit'>Send</Button>
 						{success &&
-							"Your message has been sent. We'll get back to you soon :)"}
+							"Your message has been sent. I'll get back to you soon :)"}
 					</Form>
 				</Left>
 				<Right>
-					<Map />
+					<Suspense fallback={null}>
+						<MapDubai />
+					</Suspense>
 				</Right>
 			</Container>
 		</Section>

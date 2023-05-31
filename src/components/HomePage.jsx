@@ -132,7 +132,7 @@ const HomePage = () => {
 			<Suspense fallback={null}>
 				<Navbar />
 			</Suspense>
-			<Container>
+			<Container id='about'>
 				<LeftContainer>
 					<Suspense fallback={null}>
 						<AnimatedTitle>

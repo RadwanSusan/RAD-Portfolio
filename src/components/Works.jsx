@@ -45,7 +45,8 @@ const ListItem = styled.li`
 	font-size: 80px;
 	font-weight: bold;
 	color: transparent;
-	-webkit-text-stroke: 1px white;
+	color: transparent;
+	-webkit-text-stroke: 1px ${(props) => props.$WorkslistItemColorStroke};
 	position: relative;
 
 	@media only screen and (max-width: 768px) {
@@ -235,6 +236,8 @@ const Ball = styled.div`
 
 const Works = () => {
 	const { isDark } = useDarkMode();
+	const sectionStyles = isDark ? darkTheme.colors : lightTheme.colors;
+
 	const data = [
 		'Web Design',
 		'Development',
@@ -244,13 +247,16 @@ const Works = () => {
 	];
 	return (
 		<Section>
-			<Container>
+			<Container id='works'>
 				<Left>
 					<List>
 						{data.map((item) => (
 							<ListItem
 								key={item}
 								text={item}
+								$WorkslistItemColorStroke={
+									sectionStyles.WorkslistItemColorStroke
+								}
 							>
 								{item}
 							</ListItem>

@@ -50,6 +50,8 @@ export const lightTheme = {
 		SectionBoxBackgroundColor: 'rgba(255, 255, 255, 0.25)',
 		whoTitleColor: '#000',
 		whoDescColor: '#272727',
+		WorkslistItemColorStroke: '#000',
+		ContactTitleColor: '#000',
 	},
 	threeJS: {
 		three_Model_Hero_Color: 'hsl(229, 19%, 12%)',
@@ -79,6 +81,8 @@ export const darkTheme = {
 		SectionBoxBackgroundColor: 'rgba(0, 0, 0, 0.15)',
 		whoTitleColor: '#fff',
 		whoDescColor: '#e0e0e0',
+		WorkslistItemColorStroke: '#e0e0e0',
+		ContactTitleColor: '#fff',
 	},
 	threeJS: {
 		three_Model_Hero_Color: 'hsl(261, 100%, 16%)',

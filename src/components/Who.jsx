@@ -85,7 +85,7 @@ const Who = () => {
 
 	return (
 		<Section>
-			<Container>
+			<Container id='my-skills'>
 				<Left>
 					<Canvas
 						camera={{
