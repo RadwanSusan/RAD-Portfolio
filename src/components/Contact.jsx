@@ -38,7 +38,7 @@ const Form = styled.form`
 	flex-direction: column;
 	gap: 25px;
 	@media only screen and (max-width: 768px) {
-		width: 300px;
+		width: 320px;
 	}
 `;
 
@@ -89,16 +89,14 @@ const Contact = () => {
 				'gJJw9oRmwKZw8k8YF',
 			)
 			.then(
-				(result) => {
-					console.log(result.text);
+				() => {
 					setSuccess(true);
 					ref.current.reset();
 					setTimeout(() => {
 						setSuccess(false);
 					}, 4000);
 				},
-				(error) => {
-					console.log(error.text);
+				() => {
 					setSuccess(false);
 					ref.current.reset();
 				},

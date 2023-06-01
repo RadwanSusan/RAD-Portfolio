@@ -27,16 +27,40 @@ const Section = styled.div`
 	user-select: none;
 	box-shadow: ${(props) => props.$SectionBoxShadow};
 	background-color: ${(props) => props.$SectionBoxBackgroundColor};
+	@media only screen and (max-width: 1005px) {
+		border-radius: 0;
+	}
+	@media only screen and (max-width: 768px) {
+		border-radius: 0;
+	}
+	@media only screen and (max-width: 480px) {
+		border-radius: 0;
+	}
 `;
 
 const Container = styled.div`
 	background-color: ${(props) => props.navBar_Container};
-	width: 1400px;
+	width: 70vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0px 20px;
 	border-radius: 0px 0px 20px 20px;
+	@media only screen and (max-width: 1005px) {
+		width: 100vw;
+		padding: 0px 20px 0px 10px;
+		border-radius: 0;
+	}
+	@media only screen and (max-width: 768px) {
+		width: 100vw;
+		padding: 0px 20px 0px 10px;
+		border-radius: 0;
+	}
+	@media only screen and (max-width: 480px) {
+		width: 100vw;
+		padding: 0px;
+		border-radius: 0;
+	}
 `;
 
 const Logo = styled.img`
@@ -55,6 +79,12 @@ const Icons = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 22px;
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
+	@media only screen and (max-width: 480px) {
+		display: none;
+	}
 `;
 
 const SearchIcon = styled(RiSearch2Line)`
@@ -149,6 +179,12 @@ const List = styled.ul`
 	transition: all 1.5s ease-in-out;
 	&:hover ${ListItem}:hover {
 		color: ${(props) => props.$linksColor};
+	}
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
+	@media only screen and (max-width: 480px) {
+		display: none;
 	}
 `;
 
