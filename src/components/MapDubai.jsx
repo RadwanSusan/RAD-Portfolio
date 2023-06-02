@@ -16,9 +16,9 @@ const MapDubai = () => {
 			projectionConfig={{
 				rotate: [-34.0, -47.0, 0],
 				center: [20, -21],
-				scale: 1500,
+				scale: 1200,
 			}}
-			style={{ width: '100%', height: '100%' }}
+			style={{ width: '100%', height: '100%', PointerEvents: 'none' }}
 		>
 			<Geographies
 				geography='/media/features.json'
@@ -31,6 +31,11 @@ const MapDubai = () => {
 						<Geography
 							key={geo.rsmKey}
 							geography={geo}
+							style={{
+								default: { outline: 'none' },
+								hover: { outline: 'none' },
+								pressed: { outline: 'none' },
+							}}
 						/>
 					))
 				}
@@ -51,6 +56,9 @@ const MapDubai = () => {
 					alignmentBaseline='middle'
 					fill={isDark ? 'white' : '#000'}
 					fontSize='20px'
+					style={{
+						userSelect: 'none',
+					}}
 				>
 					{'Dubai'}
 				</text>
