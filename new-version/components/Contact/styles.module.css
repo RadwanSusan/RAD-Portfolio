@@ -1,0 +1,66 @@
+/* components\Contact\styles.module.css */
+.section {
+	height: 100vh;
+	scroll-snap-align: center;
+}
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 150px;
+}
+.left {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.title {
+	font-weight: 200;
+	color: var(--ContactTitleColor);
+}
+.form {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+.input {
+	padding: 20px;
+	background-color: #e8e6e6;
+	border: none;
+	border-radius: 5px;
+}
+.textArea {
+	padding: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #e8e6e6;
+}
+.button {
+	background-color: #222;
+	color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 20px;
+}
+.right {
+	flex: 1;
+}
+.successMessage {
+	color: green;
+}
+@media only screen and (max-width: 768px) {
+	.left {
+		justify-content: center;
+	}
+	.form {
+		width: 320px;
+	}
+	.right {
+		display: none;
+	}
+}

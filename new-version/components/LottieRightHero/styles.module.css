@@ -1,0 +1,16 @@
+/* components\LottieRightHero\styles.module.css */
+.lottieAnimation {
+	width: 600px;
+	height: 500px;
+	object-fit: contain;
+	position: absolute;
+	top: 250px;
+	right: 110px;
+	margin: auto;
+	animation: animate 2s infinite ease-in-out alternate;
+}
+@keyframes animate {
+	100% {
+		transform: translateY(-20px);
+	}
+}

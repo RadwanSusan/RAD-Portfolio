@@ -1,0 +1,131 @@
+/* app\globals.css */
+:root {
+	--navBar-Container-light: rgba(255, 255, 255, 0.3);
+	--background-Main-light: linear-gradient(
+		to right,
+		hsl(173, 33%, 95%),
+		hsl(211, 29%, 74%)
+	);
+	--iconColors-light: rgba(255, 255, 255, 0.5);
+	--iconFillColor-light: black;
+	--linksColor-light: black;
+	--iconColorsHover-light: rgba(255, 255, 255, 1);
+	--iconFillColorHover-light: black;
+	--iconBoxShadow-light: 0px 0px 4px rgba(0, 0, 0, 0.25);
+	--NavbarButtonColor-light: rgba(255, 255, 255, 1);
+	--NavbarButtonColorBackground-light: #222;
+	--NavbarButtonColorHover-light: black;
+	--NavbarButtonColorBackgroundHover-light: rgba(255, 255, 255, 0.7);
+	--NavbarButtonBorder-light: 2px solid #222;
+	--NavbarButtonBorderHover-light: 2px solid black;
+	--TitleAndDesc-light: #000;
+	--textTopBorder-light: 0.7vmin solid black;
+	--SectionBoxShadow-light: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	--SectionBoxBackgroundColor-light: rgba(255, 255, 255, 0.25);
+	--whoTitleColor-light: #000;
+	--whoDescColor-light: #272727;
+	--WorkslistItemColorStroke-light: #000;
+	--ContactTitleColor-light: #000;
+	--three-Model-Hero-Color-light: hsl(229, 19%, 12%);
+	--three-Model-Hero-Ambient-Color-light: hsl(229, 19%, 12%);
+	--navBar-Container-dark: rgba(0, 0, 0, 0.3);
+	--background-Main-dark: linear-gradient(to left, #0f0c29, #302b63, #24243e);
+	--iconColors-dark: rgba(255, 255, 255, 0.09);
+	--iconFillColor-dark: white;
+	--linksColor-dark: white;
+	--iconColorsHover-dark: rgba(255, 255, 255, 0.25);
+	--iconFillColorHover-dark: white;
+	--iconBoxShadow-dark: 0px 0px 4px rgba(0, 0, 0, 0.4);
+	--NavbarButtonColor-dark: rgba(0, 0, 0, 1);
+	--NavbarButtonColorBackground-dark: rgba(255, 255, 255, 1);
+	--NavbarButtonColorHover-dark: white;
+	--NavbarButtonColorBackgroundHover-dark: rgba(255, 255, 255, 0.1);
+	--NavbarButtonBorder-dark: none;
+	--NavbarButtonBorderHover-dark: 1px solid white;
+	--TitleAndDesc-dark: #fff;
+	--textTopBorder-dark: 0.7vmin solid white;
+	--SectionBoxShadow-dark: 0px 4px 4px rgba(0, 0, 0, 0.45);
+	--SectionBoxBackgroundColor-dark: rgba(0, 0, 0, 0.15);
+	--whoTitleColor-dark: #fff;
+	--whoDescColor-dark: #e0e0e0;
+	--WorkslistItemColorStroke-dark: #e0e0e0;
+	--ContactTitleColor-dark: #fff;
+	--three-Model-Hero-Color-dark: hsl(261, 100%, 16%);
+	--three-Model-Hero-Ambient-Color-dark: hsl(261, 100%, 16%);
+}
+:root {
+	--navBar-Container: var(--navBar-Container-light);
+	--background-Main: var(--background-Main-light);
+	--iconColors: var(--iconColors-light);
+	--iconFillColor: var(--iconFillColor-light);
+	--linksColor: var(--linksColor-light);
+	--iconColorsHover: var(--iconColorsHover-light);
+	--iconFillColorHover: var(--iconFillColorHover-light);
+	--iconBoxShadow: var(--iconBoxShadow-light);
+	--NavbarButtonColor: var(--NavbarButtonColor-light);
+	--NavbarButtonColorBackground: var(--NavbarButtonColorBackground-light);
+	--NavbarButtonColorHover: var(--NavbarButtonColorHover-light);
+	--NavbarButtonColorBackgroundHover: var(
+		--NavbarButtonColorBackgroundHover-light
+	);
+	--NavbarButtonBorder: var(--NavbarButtonBorder-light);
+	--NavbarButtonBorderHover: var(--NavbarButtonBorderHover-light);
+	--TitleAndDesc: var(--TitleAndDesc-light);
+	--textTopBorder: var(--textTopBorder-light);
+	--SectionBoxShadow: var(--SectionBoxShadow-light);
+	--SectionBoxBackgroundColor: var(--SectionBoxBackgroundColor-light);
+	--whoTitleColor: var(--whoTitleColor-light);
+	--whoDescColor: var(--whoDescColor-light);
+	--WorkslistItemColorStroke: var(--WorkslistItemColorStroke-light);
+	--ContactTitleColor: var(--ContactTitleColor-light);
+	--three-Model-Hero-Color: var(--three-Model-Hero-Color-light);
+	--three-Model-Hero-Ambient-Color: var(
+		--three-Model-Hero-Ambient-Color-light
+	);
+}
+[data-theme='dark'] {
+	--navBar-Container: var(--navBar-Container-dark);
+	--background-Main: var(--background-Main-dark);
+	--iconColors: var(--iconColors-dark);
+	--iconFillColor: var(--iconFillColor-dark);
+	--linksColor: var(--linksColor-dark);
+	--iconColorsHover: var(--iconColorsHover-dark);
+	--iconFillColorHover: var(--iconFillColorHover-dark);
+	--iconBoxShadow: var(--iconBoxShadow-dark);
+	--NavbarButtonColor: var(--NavbarButtonColor-dark);
+	--NavbarButtonColorBackground: var(--NavbarButtonColorBackground-dark);
+	--NavbarButtonColorHover: var(--NavbarButtonColorHover-dark);
+	--NavbarButtonColorBackgroundHover: var(
+		--NavbarButtonColorBackgroundHover-dark
+	);
+	--NavbarButtonBorder: var(--NavbarButtonBorder-dark);
+	--NavbarButtonBorderHover: var(--NavbarButtonBorderHover-dark);
+	--TitleAndDesc: var(--TitleAndDesc-dark);
+	--textTopBorder: var(--textTopBorder-dark);
+	--SectionBoxShadow: var(--SectionBoxShadow-dark);
+	--SectionBoxBackgroundColor: var(--SectionBoxBackgroundColor-dark);
+	--whoTitleColor: var(--whoTitleColor-dark);
+	--whoDescColor: var(--whoDescColor-dark);
+	--WorkslistItemColorStroke: var(--WorkslistItemColorStroke-dark);
+	--ContactTitleColor: var(--ContactTitleColor-dark);
+	--three-Model-Hero-Color: var(--three-Model-Hero-Color-dark);
+	--three-Model-Hero-Ambient-Color: var(--three-Model-Hero-Ambient-Color-dark);
+}
+* {
+	padding: 0;
+	margin: 0;
+	font-family: 'Supreme', sans-serif;
+	box-sizing: border-box;
+}
+::selection {
+	background-color: rgba(0, 0, 0, 0.2);
+	color: black;
+}
+html {
+	scroll-behavior: smooth;
+}
+body {
+	background: var(--background-Main);
+	color: black;
+	height: 100vh;
+}

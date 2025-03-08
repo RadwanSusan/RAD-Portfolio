@@ -1,0 +1,97 @@
+/* components\HomePage\styles.module.css */
+.section {
+	height: 100vh;
+	scroll-snap-align: center;
+	flex-direction: column;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.container {
+	height: 100vh;
+	width: 1400px;
+	display: flex;
+	justify-content: space-between;
+}
+.leftContainer {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+	flex: 2;
+	margin-left: 40px;
+	margin-top: 150px;
+}
+.rightContainer {
+	position: relative;
+	flex: 3;
+	z-index: 1;
+}
+.animatedTitle {
+	color: #000;
+	font-family: 'Nunito', sans-serif;
+	height: 30vmin;
+	width: 1vmin;
+}
+.textTop {
+	height: 50%;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	color: var(--TitleAndDesc);
+}
+.textBottom {
+	height: 50%;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	color: var(--TitleAndDesc);
+}
+.textTop > div {
+	font-size: 5.5vmin;
+	padding: 2vmin 0;
+	position: absolute;
+	animation: showTopText 1s;
+	animation-delay: 0.5s;
+	animation-fill-mode: forwards;
+	bottom: 0;
+	transform: translate(0, 100%);
+}
+.textBottom > div {
+	animation: showBottomText 0.5s;
+	animation-delay: 1.75s;
+	animation-fill-mode: forwards;
+	top: 0;
+	transform: translate(0, -100%);
+}
+.textTop > div span {
+	display: block;
+	font-family: 'Nunito', sans-serif;
+	font-weight: bolder;
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.bottomDesc {
+	font-size: 2.3vmin !important;
+}
+@keyframes showTopText {
+	0% {
+		transform: translate3d(0, 100%, 0);
+	}
+	40%,
+	60% {
+		transform: translate3d(0, 50%, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+@keyframes showBottomText {
+	0% {
+		transform: translate3d(0, -100%, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}

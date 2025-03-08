@@ -1,0 +1,142 @@
+/* components\Navbar\styles.module.css */
+.section {
+	position: fixed;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	z-index: 9999;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.container {
+	background-color: var(--SectionBoxBackgroundColor);
+	box-shadow: var(--SectionBoxShadow);
+	width: 85vw;
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	max-width: 1650px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 20px;
+	border-radius: 0px 0px 20px 20px;
+}
+.logo {
+	-webkit-user-drag: none;
+	user-drag: none;
+	cursor: pointer;
+}
+.links {
+	display: flex;
+	align-items: center;
+	gap: 40px;
+}
+.icons {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+.iconButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--iconColors);
+	border: none;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	box-shadow: var(--iconBoxShadow);
+}
+.iconSvg {
+	font-size: 20px;
+	fill: var(--iconFillColor);
+	transition: all 0.2s ease-in-out;
+}
+.iconButton:hover {
+	background-color: var(--iconColorsHover);
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+.iconButton:hover .iconSvg {
+	fill: var(--iconFillColorHover);
+}
+.button {
+	font-family: 'Supreme', sans-serif;
+	font-size: 16px;
+	width: 100px;
+	padding: 10px;
+	background-color: var(--NavbarButtonColorBackground);
+	color: var(--NavbarButtonColor);
+	border: var(--NavbarButtonBorder);
+	font-weight: normal;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.15s ease-in-out;
+}
+.button:hover {
+	background-color: var(--NavbarButtonColorBackgroundHover);
+	color: var(--NavbarButtonColorHover);
+	border: var(--NavbarButtonBorderHover);
+}
+.list {
+	display: flex;
+	gap: 25px;
+	list-style: none;
+	transition: all 1.5s ease-in-out;
+}
+.listItem {
+	color: var(--linksColor);
+	font-size: 19px;
+	cursor: pointer;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 6.7px;
+	transition: text-underline-offset 0.1s ease-in-out, opacity 0.25s ease-in-out,
+		text-decoration 0.1s ease-in-out;
+}
+.faded {
+	opacity: 0.3;
+}
+.listItem:hover {
+	text-decoration: underline;
+	text-underline-offset: 4.7px;
+	text-decoration-thickness: 1.5px;
+}
+@media only screen and (max-width: 1005px) {
+	.section,
+	.container {
+		border-radius: 0;
+	}
+	.container {
+		width: 100vw;
+		padding: 0px 20px 0px 10px;
+	}
+}
+@media only screen and (max-width: 768px) {
+	.section,
+	.container {
+		border-radius: 0;
+	}
+	.container {
+		width: 100vw;
+		padding: 0px 20px 0px 10px;
+	}
+	.icons,
+	.list {
+		display: none;
+	}
+}
+@media only screen and (max-width: 480px) {
+	.section,
+	.container {
+		border-radius: 0;
+	}
+	.container {
+		width: 100vw;
+		padding: 0px;
+	}
+	.icons,
+	.list {
+		display: none;
+	}
+}
