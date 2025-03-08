@@ -22,3 +22,4 @@ dist-ssr
 *.sw?
 .eslintrc.cjs
 .safurai/config.yml
+new-version/bun.lockb
