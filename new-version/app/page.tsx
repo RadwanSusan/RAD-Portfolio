@@ -2,6 +2,7 @@
 'use client';
 import React, { lazy, Suspense } from 'react';
 import HomePage from '../components/HomePage';
+import About from '../components/About';
 import styles from './page.module.css';
 
 const Who = lazy(() => import('../components/Who'));
@@ -12,6 +13,7 @@ export default function Home() {
 	return (
 		<main className={styles.container}>
 			<HomePage />
+			<About />
 			<Suspense fallback={null}>
 				<Who />
 			</Suspense>
