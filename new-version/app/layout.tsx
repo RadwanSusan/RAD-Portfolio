@@ -5,8 +5,8 @@ import Navbar from '../components/Navbar';
 import './globals.css';
 
 export const metadata: Metadata = {
-	title: 'RAD Portfolio',
-	description: 'A Personal Portfolio [RS]',
+	title: 'Riyadh Al-Balushi - Full Stack Developer Portfolio',
+	description: 'Explore the professional portfolio of Riyadh Al-Balushi, a passionate Full Stack Developer showcasing innovative projects and technical expertise in web development, UI/UX design, and software engineering.',
 };
 
 export default function RootLayout({
