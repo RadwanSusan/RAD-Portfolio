@@ -1,7 +1,7 @@
 // app\layout.tsx
 import type { Metadata } from 'next';
 import { ThemeProvider } from '../contexts/theme-context';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/ui/Navbar';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -40,3 +40,4 @@ export default function RootLayout({
 function ClientThemeProvider({ children }: { children: React.ReactNode }) {
 	return <ThemeProvider>{children}</ThemeProvider>;
 }
+
